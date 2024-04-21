@@ -1,0 +1,18 @@
+# ninja log v5
+14	133	7354193502594830	CMakeFiles/EfreiDataMaster.dir/interface.c.obj	722a481d9dd00ab1
+29	149	7354193502766444	CMakeFiles/EfreiDataMaster.dir/main.c.obj	7d8d6722144ceeec
+0	154	7354193502816448	CMakeFiles/EfreiDataMaster.dir/cdataframe.c.obj	3ed7258e869450b0
+5	160	7354193502880175	CMakeFiles/EfreiDataMaster.dir/column.c.obj	53cdcaf7508e7b10
+160	317	7354193504385739	EfreiDataMaster.exe	523a33149b8466e4
+3	114	7354193693419134	CMakeFiles/EfreiDataMaster.dir/main.c.obj	7d8d6722144ceeec
+115	251	7354193694724258	EfreiDataMaster.exe	523a33149b8466e4
+3	134	7354196582694491	CMakeFiles/EfreiDataMaster.dir/cdataframe.c.obj	3ed7258e869450b0
+10	136	7354196582694491	CMakeFiles/EfreiDataMaster.dir/column.c.obj	53cdcaf7508e7b10
+3	118	7354196890528509	CMakeFiles/EfreiDataMaster.dir/cdataframe.c.obj	3ed7258e869450b0
+3	111	7354199488386005	CMakeFiles/EfreiDataMaster.dir/cdataframe.c.obj	3ed7258e869450b0
+10	114	7354200021301631	CMakeFiles/EfreiDataMaster.dir/main.c.obj	7d8d6722144ceeec
+4	116	7354200021311443	CMakeFiles/EfreiDataMaster.dir/cdataframe.c.obj	3ed7258e869450b0
+116	220	7354200022310919	EfreiDataMaster.exe	523a33149b8466e4
+9	104	7354202512879877	CMakeFiles/EfreiDataMaster.dir/main.c.obj	7d8d6722144ceeec
+2	115	7354202512990567	CMakeFiles/EfreiDataMaster.dir/cdataframe.c.obj	3ed7258e869450b0
+115	215	7354202513949816	EfreiDataMaster.exe	523a33149b8466e4
