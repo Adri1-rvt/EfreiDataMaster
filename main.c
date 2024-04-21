@@ -12,7 +12,9 @@ int main()
 {
     menu();
 
-    /**
+    /** TEST DES FONCTIONS
+
+
     char title[50], title2[50];
     printf("Saisir le titre de la structure : ");
     scanf("%s", title);
@@ -63,6 +65,7 @@ int main()
     printf("Il y a %d valeurs egales a %d\n", cpt, 15);
 
     main2();
+
     */
 
     return 0;

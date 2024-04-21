@@ -23,6 +23,7 @@
 ## Présentation du projet
 
 Vous connaisez la librairie Pandas en python ? Si oui vous savez à quel point le traitement de données peut être utile. Malheureusement, il n'y a pas d'équivalent de cette librairie een C ! Grâce au principe des CDataframes, nous avons donc décidé de coder notre propre librairie C de traitement de donnéees !<br>
+Nous avons opté pour un cdataframe sous forme de tableau dynamique constitué de colonnes d'entiers, avec des fonctionnalités simples, mais nous pensons à élargir cela une fois le projet avancé, mais pour garder une bonne qualité de code ! <br> 
 Notre projet possède les fonctionnalités suivantes :
 1. Alimentation
    - Création d’un CDataframe vide
@@ -47,6 +48,24 @@ Notre projet possède les fonctionnalités suivantes :
    - Nombre de cellules égales à x (x donné en paramètre)
    - Nombre de cellules contenant une valeur supérieure à x (x donné en paramètre)
    - Nombre de cellules contenant une valeur inférieure à x (x donné en paramètre)
+   
+Les différents composants du projet sont :
+- Des fichiers .c
+   - main.c : fichier principal
+   - column.c : fichier gérant les colonnes
+   - cdataframe.c : fichier gérant le cdataframe
+   - interface.c : fichier gérant l'interface
+- Des fichiers .h
+  - column.h : fichier d'en-tête de column.c
+  - cdataframe.h : fichier d'en-tête de cdataframe.c
+  - interface.h : fichier d'en-tête de interface.c
+- Des fichiers .txt et .md :
+  - README.md 
+  - CMakeLists.txt
+- Des images (pour le README) :
+  - commits.png
+  - EfreiDataMaster.png
+  - interface.png
 
 ## Comment utiliser
 
@@ -74,6 +93,7 @@ $ ./edm
 > **Note**
 > Selon votre système d'exploitation ou le terminal utilisé, les commandes peuvent être différentes.
 
+Une fois le code lancé, laissez-vous guider par notre intuitive interface !
 
 ## Télécharger
 
@@ -97,3 +117,9 @@ Ce logiciel a été développé par :
 - Adrien RIVET (adrien.rivet@efrei.net)
 
 N'hésitez pas à nous contacter par mail si vous avez besoin d'informations !
+
+## Note
+
+Nous avons eu des problèmes avec notre premier repository GitHub, celui-ci est le second, voici donc une capture d'écran des précédents commits pour prouver que le travail du commit initial de ce dépôt a été fait collaborativement :
+
+![screen](commits.png)
