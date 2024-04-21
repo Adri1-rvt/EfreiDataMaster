@@ -1,4 +1,5 @@
 <!-- Bonjour, nous avons choisi de rédiger notre fichier README en format Markdown (.md). Par consèquent, il sera plus simple et plus beau à visualiser depuis GitHub ou depuis un IDE tel CLion. Bonne lecture ! -->
+<!-- Lien vers notre GitHub : https://github.com/Adri1-rvt/EfreiDataMaster -->
 
 <h1 align="center">
   <br>
@@ -97,7 +98,7 @@ Une fois le code lancé, laissez-vous guider par notre intuitive interface !
 
 ## Télécharger
 
-Vous pouvez [télécharger](https://github.com/Adri1-rvt/CDataframe?tab=readme-ov-file#t%C3%A9l%C3%A9charger) la dernière version de EfreiDataMaster pour Windows, MacOS et Linux via GitHub.
+Vous pouvez [télécharger](https://github.com/Adri1-rvt/EfreiDataMaster) la dernière version de EfreiDataMaster pour Windows, MacOS et Linux via GitHub.
 <br>Pour cela, ouvrez le lien ci-dessus, puis cliquez sur le bonton vert en haut à droite de la page GitHub "Code".
 Sélectionnez ensuite "Download ZIP".
 <br>Une fois votre fichier ZIP téléchargé, il ne vous reste plus qu'à le décompresser (avec WinRaR par exemple) pour pouvoir utiliser le code source !
