@@ -12,7 +12,6 @@ int main()
 {
     menu();
 
-    /** TEST DES FONCTIONS
 
 
     char title[50], title2[50];
@@ -64,9 +63,9 @@ int main()
     cpt = number_of_equal_values(col, 15);
     printf("Il y a %d valeurs egales a %d\n", cpt, 15);
 
-    main2();
 
-    */
+
+
 
     return 0;
 }

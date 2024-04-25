@@ -113,15 +113,17 @@ void print_col(COLUMN* col) {
  * Fonctionnement : parcourir une colonne et compter le nb d'occurrences de l'entier en paramètre
  */
 int occurrences(COLUMN* col, int x) {
-    int cpt = 0;
-    if (col == NULL) {   // vérifier si la colonne est viable
-        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
+    if (col == NULL){
+        printf("erreur");
         return 1;
     }
-
-    for (int i = 0; i < col -> logical_size; i++) if (col -> Datas[i] == x) cpt++;   // parcourir le taableau de valeur et compter le nombre d'occurences
-
-    return cpt;   // retourner le compteur
+    int res=0;
+    for(int i=0; i< col->logical_size; i++){
+        if( x== col->Datas[i]){
+            res++;
+        }
+    }
+    return res;
 }
 
 
@@ -131,18 +133,16 @@ int occurrences(COLUMN* col, int x) {
  * Sortie : entier associé à l'indice passé en paramètre
  * Fonctionnement : parcourir une colonne pour trouver la valeur associée à une certaine position
  */
-int value_at_position(COLUMN* col, int position) {
-    if (col == NULL) {   // vérifier si la colonne est viable
-        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
+int value_at_position(COLUMN* col, int x) {
+    if(col==NULL){
+        printf("erreur");
         return 1;
     }
-
-    if (position < 0 || position >= col -> logical_size) {   // vérifier que la position existe
-        printf("ERREUR 3 (voir index des erreurs sur GitHub)\n");
+    if(x<0 || x> col->logical_size){
+        printf("erreur");
         return 1;
     }
-
-    return col->Datas[position];   // retourner la valeur à la position passée en paramètre du tableau de valeurs
+    return col->Datas[x];
 }
 
 
@@ -153,15 +153,17 @@ int value_at_position(COLUMN* col, int position) {
  * Fonctionnement : parcourir une colonne pour trouver le nombre de valeurs inférieures
  */
 int number_of_little_values(COLUMN* col, int x) {
-    int cpt = 0;
-    if (col == NULL) {   // vérifier si la colonne est viable
-        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
+    if(col==NULL){
+        printf("erreur");
         return 1;
     }
-
-    for (int i = 0; i < col -> logical_size; i++) if (col -> Datas[i] < x) cpt++;   // parcourir le taableau de valeur et compter le nombre de valeurs inférieures
-
-    return cpt;   // retourner le compteur
+    int res=0;
+    for(int i=0; i<col->logical_size; i++){
+        if(col->Datas[i] < x){
+            res++;
+        }
+    }
+    return res;
 }
 
 
@@ -172,15 +174,17 @@ int number_of_little_values(COLUMN* col, int x) {
  * Fonctionnement : parcourir une colonne pour trouver le nombre de valeurs supérieures
  */
 int number_of_big_values(COLUMN* col, int x) {
-    int cpt = 0;
-    if (col == NULL) {   // vérifier si la colonne est viable
-        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
+    if(col==NULL){
+        printf("erreur");
         return 1;
     }
-
-    for (int i = 0; i < col -> logical_size; i++) if (col -> Datas[i] > x) cpt++;   // parcourir le taableau de valeur et compter le nombre de valeurs supérieures
-
-    return cpt;   // retourner le compteur
+    int res=0;
+    for(int i=0; i<col->logical_size; i++){
+        if(col->Datas[i] > x){
+            res++;
+        }
+    }
+    return res;
 }
 
 
@@ -191,13 +195,15 @@ int number_of_big_values(COLUMN* col, int x) {
  * Fonctionnement : parcourir une colonne pour trouver le nombre de valeurs égales
  */
 int number_of_equal_values(COLUMN* col, int x) {
-    int cpt = 0;
-    if (col == NULL) {   // vérifier si la colonne est viable
-        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
+    if(col==NULL){
+        printf("erreur");
         return 1;
     }
-
-    for (int i = 0; i < col -> logical_size; i++) if (col -> Datas[i] == x) cpt++;   // parcourir le taableau de valeur et compter le nombre de valeurs égales
-
-    return cpt;   // retourner le compteur
+    int res=0;
+    for(int i=0; i<col->logical_size; i++){
+        if(col->Datas[i] == x){
+            res++;
+        }
+    }
+    return res;
 }
