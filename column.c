@@ -35,7 +35,7 @@ COLUMN *create_column(char* title) {
  * Sortie : entier pour la gestion d'erreurs
  * Fonctionnement : insérer une valeur dans la colonne passée en paramètre
  */
-int insert_value(COLUMN* col, int value) {
+int insert_value(COLUMN* col, int val) {
     if (col == NULL) {   // vérifier que le pointeur sur la colonne n'est pas égal à NULL (sinon il y a eu une erreur lors de l'allocation mémoire de la structure)
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 0;
@@ -60,7 +60,7 @@ int insert_value(COLUMN* col, int value) {
         col -> physical_size += REALOC_SIZE;   // incrémenter la taille physique de la colonne avec la constante d'allocation
     }
 
-    col -> Datas[col -> logical_size] = value;   // mettre la valeur dans la colonne à l'indice de taille logique
+    col -> Datas[col -> logical_size] = val;   // mettre la valeur dans la colonne à l'indice de taille logique
     col -> logical_size++;   // incrémenter la taille logique
 
     return 1;
@@ -102,7 +102,8 @@ void print_col(COLUMN* col) {
         return;
     }
 
-    for (int i = 0; i < col -> logical_size; i++) printf("[%d]\t%d\n", i, col->Datas[i]);   // parcourir chaque élément de la colonne et l'afficher à côté de son indice
+    for (int i = 0; i < col -> logical_size; i++)
+        printf("[%d] :   %d\n", i, col->Datas[i]);   // parcourir chaque élément de la colonne et l'afficher à côté de son indice
 }
 
 
@@ -113,17 +114,15 @@ void print_col(COLUMN* col) {
  * Fonctionnement : parcourir une colonne et compter le nb d'occurrences de l'entier en paramètre
  */
 int occurrences(COLUMN* col, int x) {
-    if (col == NULL){
-        printf("erreur");
+    int cpt = 0;
+    if (col == NULL) {   // vérifier si la colonne est viable
+        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
-    int res=0;
-    for(int i=0; i< col->logical_size; i++){
-        if( x== col->Datas[i]){
-            res++;
-        }
-    }
-    return res;
+
+    for (int i = 0; i < col -> logical_size; i++) if (col -> Datas[i] == x) cpt++;   // parcourir le taableau de valeur et compter le nombre d'occurences
+
+    return cpt;   // retourner le compteur
 }
 
 
@@ -133,16 +132,18 @@ int occurrences(COLUMN* col, int x) {
  * Sortie : entier associé à l'indice passé en paramètre
  * Fonctionnement : parcourir une colonne pour trouver la valeur associée à une certaine position
  */
-int value_at_position(COLUMN* col, int x) {
-    if(col==NULL){
-        printf("erreur");
+int value_at_position(COLUMN* col, int pos) {
+    if (col == NULL) {   // vérifier si la colonne est viable
+        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
-    if(x<0 || x> col->logical_size){
-        printf("erreur");
+
+    if (pos < 0 || pos >= col -> logical_size) {   // vérifier que la position existe
+        printf("ERREUR 3 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
-    return col->Datas[x];
+
+    return col -> Datas[pos];   // retourner la valeur à la position passée en paramètre du tableau de valeurs
 }
 
 
@@ -153,17 +154,15 @@ int value_at_position(COLUMN* col, int x) {
  * Fonctionnement : parcourir une colonne pour trouver le nombre de valeurs inférieures
  */
 int number_of_little_values(COLUMN* col, int x) {
-    if(col==NULL){
-        printf("erreur");
+    int cpt = 0;
+    if (col == NULL) {   // vérifier si la colonne est viable
+        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
-    int res=0;
-    for(int i=0; i<col->logical_size; i++){
-        if(col->Datas[i] < x){
-            res++;
-        }
-    }
-    return res;
+
+    for (int i = 0; i < col -> logical_size; i++) if (col -> Datas[i] < x) cpt++;   // parcourir le taableau de valeur et compter le nombre de valeurs inférieures
+
+    return cpt;   // retourner le compteur
 }
 
 
@@ -174,17 +173,15 @@ int number_of_little_values(COLUMN* col, int x) {
  * Fonctionnement : parcourir une colonne pour trouver le nombre de valeurs supérieures
  */
 int number_of_big_values(COLUMN* col, int x) {
-    if(col==NULL){
-        printf("erreur");
+    int cpt = 0;
+    if (col == NULL) {   // vérifier si la colonne est viable
+        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
-    int res=0;
-    for(int i=0; i<col->logical_size; i++){
-        if(col->Datas[i] > x){
-            res++;
-        }
-    }
-    return res;
+
+    for (int i = 0; i < col -> logical_size; i++) if (col -> Datas[i] > x) cpt++;   // parcourir le taableau de valeur et compter le nombre de valeurs supérieures
+
+    return cpt;   // retourner le compteur
 }
 
 
@@ -195,15 +192,13 @@ int number_of_big_values(COLUMN* col, int x) {
  * Fonctionnement : parcourir une colonne pour trouver le nombre de valeurs égales
  */
 int number_of_equal_values(COLUMN* col, int x) {
-    if(col==NULL){
-        printf("erreur");
+    int cpt = 0;
+    if (col == NULL) {   // vérifier si la colonne est viable
+        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
-    int res=0;
-    for(int i=0; i<col->logical_size; i++){
-        if(col->Datas[i] == x){
-            res++;
-        }
-    }
-    return res;
+
+    for (int i = 0; i < col -> logical_size; i++) if (col -> Datas[i] == x) cpt++;   // parcourir le taableau de valeur et compter le nombre de valeurs égales
+
+    return cpt;   // retourner le compteur
 }
