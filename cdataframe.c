@@ -95,18 +95,18 @@ int main2() {
     // fill_dataframe_by_input(dataframe);
     fill_dataframe(dataframe);
 
-    for (int i = 0; i < dataframe -> number_col; i++) printf("%s\t", dataframe -> columns[i]->Title);   // afficher le titre des colonnes
+    for (int i = 0; i < dataframe -> number_col; i++) printf("%s\t", dataframe -> columns[i] -> Title);   // afficher le titre des colonnes
     printf("\n");
 
-    for (int i = 0; i < dataframe->number_row; i++) {
-        for (int j = 0; j < dataframe->number_col; j++) printf("%d\t", dataframe -> columns[j]->Datas[i]);   // afficher les valeurs du cdataframe
+    for (int i = 0; i < dataframe -> number_row; i++) {
+        for (int j = 0; j < dataframe -> number_col; j++) printf("%d\t", dataframe -> columns[j] -> Datas[i]);   // afficher les valeurs du cdataframe
         printf("\n");
     }
 
     printf("\n\n\n");
-    for (int i = 0; i < dataframe->number_col; i++) {   // parcourir les colonnes
-        printf("Contenu de la colonne \"%s\":\n", dataframe->columns[i]->Title);
-        print_col(dataframe->columns[i]);   // Afficher le contenu de la colonne
+    for (int i = 0; i < dataframe -> number_col; i++) {   // parcourir les colonnes
+        printf("Contenu de la colonne \"%s\":\n", dataframe -> columns[i]->Title);
+        print_col(dataframe -> columns[i]);   // Afficher le contenu de la colonne
         printf("\n");
     }
 

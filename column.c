@@ -35,7 +35,7 @@ COLUMN *create_column(char* title) {
  * Sortie : entier pour la gestion d'erreurs
  * Fonctionnement : insérer une valeur dans la colonne passée en paramètre
  */
-int insert_value(COLUMN* col, int value) {
+int insert_value(COLUMN* col, int val) {
     if (col == NULL) {   // vérifier que le pointeur sur la colonne n'est pas égal à NULL (sinon il y a eu une erreur lors de l'allocation mémoire de la structure)
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 0;
@@ -60,7 +60,7 @@ int insert_value(COLUMN* col, int value) {
         col -> physical_size += REALOC_SIZE;   // incrémenter la taille physique de la colonne avec la constante d'allocation
     }
 
-    col -> Datas[col -> logical_size] = value;   // mettre la valeur dans la colonne à l'indice de taille logique
+    col -> Datas[col -> logical_size] = val;   // mettre la valeur dans la colonne à l'indice de taille logique
     col -> logical_size++;   // incrémenter la taille logique
 
     return 1;
@@ -102,7 +102,8 @@ void print_col(COLUMN* col) {
         return;
     }
 
-    for (int i = 0; i < col -> logical_size; i++) printf("[%d]\t%d\n", i, col->Datas[i]);   // parcourir chaque élément de la colonne et l'afficher à côté de son indice
+    for (int i = 0; i < col -> logical_size; i++)
+        printf("[%d] :   %d\n", i, col->Datas[i]);   // parcourir chaque élément de la colonne et l'afficher à côté de son indice
 }
 
 
@@ -131,18 +132,18 @@ int occurrences(COLUMN* col, int x) {
  * Sortie : entier associé à l'indice passé en paramètre
  * Fonctionnement : parcourir une colonne pour trouver la valeur associée à une certaine position
  */
-int value_at_position(COLUMN* col, int position) {
+int value_at_position(COLUMN* col, int pos) {
     if (col == NULL) {   // vérifier si la colonne est viable
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
 
-    if (position < 0 || position >= col -> logical_size) {   // vérifier que la position existe
+    if (pos < 0 || pos >= col -> logical_size) {   // vérifier que la position existe
         printf("ERREUR 3 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
 
-    return col->Datas[position];   // retourner la valeur à la position passée en paramètre du tableau de valeurs
+    return col -> Datas[pos];   // retourner la valeur à la position passée en paramètre du tableau de valeurs
 }
 
 
