@@ -1,20 +1,22 @@
 /**
  * Fichier : main.c (fichier principal)
  * Auteurs : Tess POIRAT, Adrien RIVET
- * Version : 1.1
+ * Version : 1.2
  */
 
 
+/**==========DIRECTIVES DU PREPROCESSEUR==========*/
 #include "cdataframe.h"   // inclure le fichier d'en-tête cdataframe.h (column.h en inclu dedans)
 #include "interface.h"   // inclure le fichier d'en-tête interface.h
+#include "advanced_column.h"
 
+
+/**==========FONCTION MAIN==========*/
 int main()
 {
-    menu();
+    // menu();
 
-    /** TEST DES FONCTIONS
-
-
+    /**
     char title[50], title2[50];
     printf("Saisir le titre de la structure : ");
     scanf("%s", title);
@@ -63,10 +65,39 @@ int main()
     printf("Il y a %d valeurs superieures a %d\n", cpt, 10);
     cpt = number_of_equal_values(col, 15);
     printf("Il y a %d valeurs egales a %d\n", cpt, 15);
-
-    main2();
-
     */
+
+
+
+    /**
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    // Création de la colonne et insertion des valeurs
+    COLUMN *mycol = create_column("my_column");
+    insert_value(mycol, 52);
+    insert_value(mycol, 44);
+    insert_value(mycol, 15);
+    insert_value(mycol, 18);
+
+    // Affichage du contenu avant le tri
+    printf("Contenu de la colonne avant le tri :\n");
+    print_col(mycol);
+
+    // Tri de la colonne
+    sort(mycol, ASC);
+
+    // Affichage du contenu après le tri
+    printf("\nContenu de la colonne après le tri :\n");
+    print_col_by_index(mycol);
+
+    // Nettoyage de la mémoire
+    delete_column(&mycol);
+    */
+
+    // main2();
+
+    main3();
 
     return 0;
 }
