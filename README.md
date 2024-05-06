@@ -1,4 +1,4 @@
-<!-- Bonjour ! Nous avons choisi de rédiger notre fichier README en format Markdown (.md). Par consèquent, il sera plus simple et plus beau à visualiser depuis GitHub ou depuis un IDE tel CLion. Bonne lecture ! -->
+<!-- Bonjour, nous avons choisi de rédiger notre fichier README en format Markdown (.md). Par consèquent, il sera plus simple et plus beau à visualiser depuis GitHub ou depuis un IDE tel CLion. Bonne lecture ! -->
 <!-- Lien vers notre GitHub : https://github.com/Adri1-rvt/EfreiDataMaster -->
 
 <h1 align="center">
@@ -23,10 +23,8 @@
 
 ## Présentation du projet
 
-Vous connaisez la librairie Pandas en python ? Si oui, vous savez à quel point le traitement de données peut être utile. Malheureusement, il n'y a pas d'équivalent de cette librairie een C ! Grâce au principe des CDataframes, nous avons donc décidé de coder notre propre librairie C de traitement de données !<br>
-Nous avions le choix entre programmer des colonnes seulement d'entiers ou de types différents, des fonctionnalités basiques ou avancées, et un cdataframe sous forme de tableau dynamique ou de LDLC. 
-<br>Mais pourquoi choisir lorsque l'on sait tout faire ?! Nous avons opté pour un cdataframe modulable selon le choix de l'utilisateur : les colonnes peuvent contenir des entiers ou des types différents, il y a des fonctionnalités basiques mais aussi avancées (disponibles cependant seulement pour les colonnes d'entiers), et le cdataframe est sous forme de tableau dynamique constitué de colonnes d'entiers ou de LDLC ! 
-<br>Nous avons essayé de garder une bonne qualité de code ! <br> 
+Vous connaisez la librairie Pandas en python ? Si oui vous savez à quel point le traitement de données peut être utile. Malheureusement, il n'y a pas d'équivalent de cette librairie een C ! Grâce au principe des CDataframes, nous avons donc décidé de coder notre propre librairie C de traitement de donnéees !<br>
+Nous avons opté pour un cdataframe sous forme de tableau dynamique constitué de colonnes d'entiers, avec des fonctionnalités simples, mais nous pensons à élargir cela une fois le projet avancé, mais pour garder une bonne qualité de code ! <br> 
 Notre projet possède les fonctionnalités suivantes :
 1. Alimentation
    - Création d’un CDataframe vide
@@ -51,25 +49,15 @@ Notre projet possède les fonctionnalités suivantes :
    - Nombre de cellules égales à x (x donné en paramètre)
    - Nombre de cellules contenant une valeur supérieure à x (x donné en paramètre)
    - Nombre de cellules contenant une valeur inférieure à x (x donné en paramètre)
-5. Fonctionnalités avancées (seulement pour les colonnes d'entiers)
-   - Trier une colonne
-   - Trier une colonne
-   - Afficher le contenu d'une colonne triée
-   - Effacer l'index d'une colonne
-   - Vérifier si une colonne dispose d'un index
-   - Mettre à jour un index
-   - Recherche dichotomique
    
 Les différents composants du projet sont :
 - Des fichiers .c
    - main.c : fichier principal
    - column.c : fichier gérant les colonnes
-   - advanced_column.c : fichier gérant les colonnes avancées
    - cdataframe.c : fichier gérant le cdataframe
    - interface.c : fichier gérant l'interface
 - Des fichiers .h
   - column.h : fichier d'en-tête de column.c
-  - advanced_column.h : fichier d'en-tête de advanced_column.c
   - cdataframe.h : fichier d'en-tête de cdataframe.c
   - interface.h : fichier d'en-tête de interface.c
 - Des fichiers .txt et .md :
