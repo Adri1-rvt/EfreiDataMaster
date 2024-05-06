@@ -85,6 +85,15 @@ build CMakeFiles/EfreiDataMaster.dir/main.c.obj: C_COMPILER__EfreiDataMaster_uns
   TARGET_COMPILE_PDB = CMakeFiles\EfreiDataMaster.dir\
   TARGET_PDB = EfreiDataMaster.pdb
 
+build CMakeFiles/EfreiDataMaster.dir/advanced_column.c.obj: C_COMPILER__EfreiDataMaster_unscanned_Debug C$:/Users/adrie/Desktop/EfreiDataMaster/advanced_column.c || cmake_object_order_depends_target_EfreiDataMaster
+  DEP_FILE = CMakeFiles\EfreiDataMaster.dir\advanced_column.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/adrie/Desktop/EfreiDataMaster/.
+  OBJECT_DIR = CMakeFiles\EfreiDataMaster.dir
+  OBJECT_FILE_DIR = CMakeFiles\EfreiDataMaster.dir
+  TARGET_COMPILE_PDB = CMakeFiles\EfreiDataMaster.dir\
+  TARGET_PDB = EfreiDataMaster.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target EfreiDataMaster
@@ -93,7 +102,7 @@ build CMakeFiles/EfreiDataMaster.dir/main.c.obj: C_COMPILER__EfreiDataMaster_uns
 #############################################
 # Link the executable EfreiDataMaster.exe
 
-build EfreiDataMaster.exe: C_EXECUTABLE_LINKER__EfreiDataMaster_Debug CMakeFiles/EfreiDataMaster.dir/cdataframe.c.obj CMakeFiles/EfreiDataMaster.dir/column.c.obj CMakeFiles/EfreiDataMaster.dir/interface.c.obj CMakeFiles/EfreiDataMaster.dir/main.c.obj
+build EfreiDataMaster.exe: C_EXECUTABLE_LINKER__EfreiDataMaster_Debug CMakeFiles/EfreiDataMaster.dir/cdataframe.c.obj CMakeFiles/EfreiDataMaster.dir/column.c.obj CMakeFiles/EfreiDataMaster.dir/interface.c.obj CMakeFiles/EfreiDataMaster.dir/main.c.obj CMakeFiles/EfreiDataMaster.dir/advanced_column.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\EfreiDataMaster.dir

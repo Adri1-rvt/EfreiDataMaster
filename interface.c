@@ -1,12 +1,15 @@
 /**
  * Fichier : interface.c (fichier gérant l'affichage console)
  * Auteurs : Tess POIRAT, Adrien RIVET
- * Version : 1.1
+ * Version : 1.2
  */
 
 
+/**==========DIRECTIVES DU PREPROCESSEUR==========*/
 #include "interface.h"   // inclure le fichier d'en-tête associé
 
+
+/**==========FONCTIONS==========*/
 void menu() {
     // afficher le logo en caractères ascii de notre projet (parce qu'on a du style !)
     printf("___________ _____               .__________          __             _____                   __                \n"
