@@ -209,11 +209,9 @@ int partition(int Tab[], int left, int right) {
             Tab[j] = tmp;
         }
     }
-
     int tmp = Tab[i + 1];
     Tab[i + 1] = Tab[right];
     Tab[right] = tmp;
-
     return (i + 1);
 }
 

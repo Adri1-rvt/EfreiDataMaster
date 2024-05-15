@@ -14,4 +14,6 @@ add_executable(EfreiDataMaster
         interface.h
         main.c
         advanced_column.c
-        advanced_column.h)
+        advanced_column.h
+        advanced_cdataframe.c
+        advanced_cdataframe.h)

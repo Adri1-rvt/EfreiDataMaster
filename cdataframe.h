@@ -13,17 +13,15 @@
 #define ROW_MAX 1000   // constante de ligne max définie sur 1000
 
 
-/**==========STRUCTURES==========*/
+/**==========STRUCTURE==========*/
 typedef struct {   // structure des cdataframe
     int number_col;   // nombre de colonnes
     int number_row;   // nombre de lignes
-    COLUMN* columns[COL_MAX];   // taableau de pointeur vers les colonnes (taille physique définie sur la constante COL_MAW)
+    COLUMN* columns[COL_MAX];   // tableau de pointeur vers les colonnes (taille physique définie sur la constante COL_MAW)
 } CDATAFRAME;   // alias CDATAFRAME attribué à notre structure
 
 
 /**==========PROTOTYPES DES FONCTIONS==========*/
-int main2();   // prototype de la fonction de test du cdataframe
-
 // Fonctions d'alimentation
 CDATAFRAME* create_dataframe();   // prototype de la fonction de création d'un cdataframe vide
 void fill_dataframe_by_input(CDATAFRAME* dataframe);   // prototype de la fonction de remplissage du dataframe par saisi utilisateur
@@ -51,3 +49,5 @@ int count_columns(CDATAFRAME* dataframe);   // prototype de la fonction permetta
 int count_cells_equal(CDATAFRAME* dataframe, int val);   // prototype de la fonction permettant de compter les cellules = x
 int count_cells_sup(CDATAFRAME* dataframe, int val);   // prototype de la fonction permettant de compter les cellules > x
 int count_cells_inf(CDATAFRAME* dataframe, int val);   // prototype de la fonction permettant de compter les cellules < x
+
+int test_cdataframe();   // prototype de la fonction de test du cdataframe

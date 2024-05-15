@@ -23,8 +23,8 @@
 
 ## Présentation du projet
 
-Vous connaisez la librairie Pandas en python ? Si oui vous savez à quel point le traitement de données peut être utile. Malheureusement, il n'y a pas d'équivalent de cette librairie een C ! Grâce au principe des CDataframes, nous avons donc décidé de coder notre propre librairie C de traitement de donnéees !<br>
-Nous avons opté pour un cdataframe sous forme de tableau dynamique constitué de colonnes d'entiers, avec des fonctionnalités simples, mais nous pensons à élargir cela une fois le projet avancé, mais pour garder une bonne qualité de code ! <br> 
+Vous connaisez la librairie Pandas en python ? Si oui vous savez à quel point le traitement de données peut être utile et puissant (quoique parfois laborieux). Malheureusement, il n'y a pas d'équivalent de cette librairie en C ! Grâce au principe des CDataframes, nous avons donc codé notre propre librairie C de traitement de donnéees !<br>
+Nous avons opté pour un cdataframe sous forme de tableau dynamique constitué de colonnes d'entiers ou de différents types de données (au choix), avec des fonctionnalités simples pour les différents types de données et des fonctionnalités simples et avancées pour les entiers. Nous avons porté un soin particulier au fait de garder une bonne qualité de code pour que notre librairie soit agréable à utiliser ou à analyser ! <br> 
 Notre projet possède les fonctionnalités suivantes :
 1. Alimentation
    - Création d’un CDataframe vide
@@ -55,10 +55,14 @@ Les différents composants du projet sont :
    - main.c : fichier principal
    - column.c : fichier gérant les colonnes
    - cdataframe.c : fichier gérant le cdataframe
-   - interface.c : fichier gérant l'interface
+   - advanced_column.c : fichier gérant les colonnes de différents types de données
+   - advanced_cdataframe.c : fichier gérant le cdataframe de différents types de données
+   - interface.c : fichier gérant l'interface utilisateur
 - Des fichiers .h
   - column.h : fichier d'en-tête de column.c
   - cdataframe.h : fichier d'en-tête de cdataframe.c
+  - advanced_column.h : fichier d'en-tête de advanced_column.c
+  - advanced_cdataframe.h : fichier d'en-tête de advanced_cdataframe.c
   - interface.h : fichier d'en-tête de interface.c
 - Des fichiers .txt et .md :
   - README.md 
@@ -92,16 +96,23 @@ $ ./edm
 ```
 
 > **Note**
-> Selon votre système d'exploitation ou le terminal utilisé, les commandes peuvent être différentes.
+> Selon votre système d'exploitation ou le terminal utilisé, les commandes peuvent être légèrement différentes.
 
-Une fois le code lancé, laissez-vous guider par notre intuitive interface !
+Une fois le code lancé, laissez-vous guider par notre intuitive (et magnifique) interface !
 
 ## Télécharger
 
 Vous pouvez [télécharger](https://github.com/Adri1-rvt/EfreiDataMaster) la dernière version de EfreiDataMaster pour Windows, MacOS et Linux via GitHub.
 <br>Pour cela, ouvrez le lien ci-dessus, puis cliquez sur le bonton vert en haut à droite de la page GitHub "Code".
 Sélectionnez ensuite "Download ZIP".
-<br>Une fois votre fichier ZIP téléchargé, il ne vous reste plus qu'à le décompresser (avec WinRaR par exemple) pour pouvoir utiliser le code source !
+<br>Une fois votre fichier ZIP téléchargé, il ne vous reste plus qu'à le décompresser (avec WinRaR ou un tool natif de votre OS par exemple) pour pouvoir utiliser le code source !
+
+## Compatibilité
+| Windows | MacOS | ChromeOS |   Linux    | 
+|:-------:|:-----:|:--------:|:----------:| 
+|   Compatible   |  Compatible  |   Compatible    | Compatible |
+> **Note**
+> Minimum version requise de CMake pouur la bonne exécution du programme : VERSION 3.27
 
 ## Catalogue des erreurs
 
@@ -112,6 +123,7 @@ Notre code renvoit une erreur dans la console quand vous l'exécutez ? Pas de pa
 - ERREUR 4 : Le Cdataframe est vide ou ineexploitable
 - ERREUR 5 : Limite de lignes du Cdataframe atteinte, impossible d'ajouter une nouvelle ligne.
 - ERREUR 6 : Limite de colonnes du Cdataframe atteinte, impossible d'ajouter une nouvelle colonne.
+- ERREUR 7 : Type de colonne non pris en charge
 
 ## Crédits
 

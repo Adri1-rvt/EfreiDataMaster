@@ -31,6 +31,22 @@ void menu() {
            "\t==============================================================================================\n\n\n");
     getchar();   // mettre en pause le programme tant que l'utilisateur ne l'a pas lancé
 
+    printf("=====================================================================================================================\n"
+           "QUE VOULEZ VOUS FAIRE ?\n\n"
+           "    LANCER \n"
+           "    [01] Acceder au logiciel\n\n"
+           "    TEST \n"
+           "    [02] Test des colonnes d'entier\n"
+           "    [03] Test des colonnes de differents types\n"
+           "    [04] Test du cdataframe (tableau dynamique)\n"
+           "    [05] Test du cdataframe (LLDC)\n\n"
+           "    AUTRE \n"
+           "    [06] Credits et commentaires\n"
+           "    [07] Quitter le programme\n"
+           "=====================================================================================================================\n\n\n");
+
+
+
     // afficher le catalogue des fonctionnalités
     printf("=====================================================================================================================\n"
            "OPERATIONS DANS LE CDATAFRAME:\n\n"

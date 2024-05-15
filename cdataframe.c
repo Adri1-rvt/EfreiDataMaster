@@ -8,6 +8,8 @@
 /**==========DIRECTIVES DU PREPROCESSEUR==========*/
 #include "cdataframe.h"   // inclure le fichier d'en-tête associé
 
+
+/**==========FONCTIONS DU CDATAFRAME==========*/
 /**
  * Nom : create_dataframe
  * Paramètre : /
@@ -408,17 +410,7 @@ int count_cells_inf(CDATAFRAME* dataframe, int val) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-int main2() {
+int test_cdataframe() {
     // Création d'un CDataframe
     CDATAFRAME* dataframe = create_dataframe();
 

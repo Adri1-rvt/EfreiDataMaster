@@ -1,20 +1,22 @@
 /**
- * Fichier : main.c (fichier principal)
+ * Fichier : main.c (fichier principal de notre programme)
  * Auteurs : Tess POIRAT, Adrien RIVET
  * Version : 1.2
  */
 
 
 /**==========DIRECTIVES DU PREPROCESSEUR==========*/
-#include "cdataframe.h"   // inclure le fichier d'en-tête cdataframe.h (column.h en inclu dedans)
+// Note : certains fichiers d'en-tête sont inclu dans les autres, ainsi nous ne les importons pas tous dans le main pour avoir un code fonctionnel sans erreur de conflits
+#include "cdataframe.h"   // inclure le fichier d'en-tête cdataframe.h (column.h est inclu dedans)
 #include "interface.h"   // inclure le fichier d'en-tête interface.h
-#include "advanced_column.h"
+#include "advanced_cdataframe.h"   // inclure le fichier d'en-tête advanced_cdataframe.h (advanced_column.h est inclu dedans)
 
 
 /**==========FONCTION MAIN==========*/
 int main()
 {
-    // menu();
+    //menu();
+
 
     /**
     char title[50], title2[50];
@@ -65,11 +67,11 @@ int main()
     printf("Il y a %d valeurs superieures a %d\n", cpt, 10);
     cpt = number_of_equal_values(col, 15);
     printf("Il y a %d valeurs egales a %d\n", cpt, 15);
-    */
 
 
 
-    /**
+
+
     printf("\n");
     printf("\n");
     printf("\n");
@@ -95,9 +97,13 @@ int main()
     delete_column(&mycol);
     */
 
-    // main2();
 
-    main3();
+    // test_cdataframe();
+
+    // main3();
+
+    test_advanced_cdataframe();
+
 
     return 0;
 }
