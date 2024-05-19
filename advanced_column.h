@@ -44,12 +44,12 @@ typedef struct column COLUMN2;   // définir le nom de la structure sur COLUMN2 
 COLUMN2 *create_column2(ENUM_TYPE type, char *title);   // prototype de la fonction permettant de créer une colonne
 int insert_value2(COLUMN2 *col, void *value);   // prototype de la fonction permettant d'insérer une valeurs dans la colonne
 void delete_column2(COLUMN2 **col);   // prototype de la fonction permettant de supprimer une colonne
-void convert_value(COLUMN2 *col, unsigned long long int i, char *str, int size);
+void convert_value(COLUMN2 *col, int i, char *str, int size);
 void print_col2(COLUMN2 *col);   // prototype de la fonction permettant d'afficher une colonne
 int occurrences2(COLUMN2 *col, void *x);   // prototype de la fonction permettant de retourner le nombre d'occurrence d'une valeur dans la colonne
-void *value_at_position2(COLUMN2 *col, unsigned long long int pos);
+void *value_at_position2(COLUMN2 *col, int pos);
 int number_of_little_values2(COLUMN2 *col, void *x);
 int number_of_big_values2(COLUMN2 *col, void *x);
 int number_of_equal_values2(COLUMN2 *col, void *x);
 
-int main3();   // prototype de la fonction permettant de tester les fonctionnalités des colonnes avancées
+int test_advanced_column();   // prototype de la fonction permettant de tester les fonctionnalités des colonnes avancées

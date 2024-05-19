@@ -426,3 +426,54 @@ int search_value_in_column(COLUMN *col, void *val) {
     printf("La valeur n'a pas été trouvée dans la colonne.\n");
     return 0;
 }
+
+
+int test_column() {
+    COLUMN *col = create_column("Colonne 1");
+    insert_value(col, 52);
+    insert_value(col, 44);
+    insert_value(col, 15);
+    insert_value(col, 52);
+    print_col(col);
+
+    int val = 52;
+    int count = occurrences(col, val);
+    printf("Le nombre d'occurrences de %d dans la colonne est : %d\n", val, count);
+
+    int pos = 2;
+    int value = value_at_position(col, pos);
+    printf("La valeur a la position %d est : %d\n", pos, value);
+
+    int cpt = 0;
+    cpt = number_of_little_values(col, 40);
+    printf("Il y a %d valeurs inferieures a %d\n", cpt, 40);
+    cpt = number_of_big_values(col, 10);
+    printf("Il y a %d valeurs superieures a %d\n", cpt, 10);
+    cpt = number_of_equal_values(col, 15);
+    printf("Il y a %d valeurs egales a %d\n", cpt, 15);
+
+
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    // Création de la colonne et insertion des valeurs
+    COLUMN *mycol = create_column("my_column");
+    insert_value(mycol, 52);
+    insert_value(mycol, 44);
+    insert_value(mycol, 15);
+    insert_value(mycol, 18);
+
+    // Affichage du contenu avant le tri
+    printf("Contenu de la colonne avant le tri :\n");
+    print_col(mycol);
+
+    // Tri de la colonne
+    sort(mycol, ASC);
+
+    // Affichage du contenu après le tri
+    printf("\nContenu de la colonne après le tri :\n");
+    print_col_by_index(mycol);
+
+    // Nettoyage de la mémoire
+    delete_column(&mycol);
+}

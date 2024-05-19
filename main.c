@@ -6,104 +6,57 @@
 
 
 /**==========DIRECTIVES DU PREPROCESSEUR==========*/
-// Note : certains fichiers d'en-tête sont inclu dans les autres, ainsi nous ne les importons pas tous dans le main pour avoir un code fonctionnel sans erreur de conflits
-#include "cdataframe.h"   // inclure le fichier d'en-tête cdataframe.h (column.h est inclu dedans)
+// Note : certains fichiers d'en-tête sont inclus dans les autres, ainsi nous ne les importons pas tous dans le fichier main pour avoir un code fonctionnel (sans erreur de conflits)
+#include "cdataframe.h"   // inclure le fichier d'en-tête cdataframe.h (le fichier column.h est inclu dedans)
 #include "interface.h"   // inclure le fichier d'en-tête interface.h
-#include "advanced_cdataframe.h"   // inclure le fichier d'en-tête advanced_cdataframe.h (advanced_column.h est inclu dedans)
+#include "advanced_cdataframe.h"   // inclure le fichier d'en-tête advanced_cdataframe.h (le fichier advanced_column.h est inclu dedans)
 
 
 /**==========FONCTION MAIN==========*/
 int main()
 {
-    //menu();
+    menu();
+    int num;
+    while (1) {
+        do {
+            printf("Tapez le numero de ce que vous voulez faire :");
+            scanf("%d", &num);
+        } while (num < 1 || num > 7);
+        switch (num) {
+            case 2:
+                test_column();
+                printf("\n==============================================================================================\n");
+                break;
+            case 3:
+                test_advanced_column();
+                printf("\n==============================================================================================\n");
+                break;
+            case 4:
+                test_cdataframe();
+                printf("\n==============================================================================================\n");
+                break;
+            case 5:
+                test_advanced_cdataframe();
+                printf("\n==============================================================================================\n");
+                break;
+            case 6:
+                credits();
+                printf("\n==============================================================================================\n");
+                break;
+            case 7:
+                printf("Merci et a bientot !");
+                exit(EXIT_SUCCESS);
+        }
+    }
 
 
-    /**
-    char title[50], title2[50];
-    printf("Saisir le titre de la structure : ");
-    scanf("%s", title);
-    COLUMN *col1 = create_column(title);
-
-    printf("\n");
-    printf("Titre : %s\n", col1 -> Title);
-    printf("Taille logique : %d\n", col1 -> logical_size);
-    printf("Taille physique : %d\n", col1 -> physical_size);
-
-    printf("\n");
-    printf("\n");
-    printf("Saisir le titre de la seconde structure : ");
-    scanf("%s", title2);
-    COLUMN *col2 = create_column(title2);
-
-    printf("\n");
-    printf("Titre : %s\n", col2 -> Title);
-    printf("Taille logique : %d\n", col2 -> logical_size);
-    printf("Taille physique : %d\n", col2 -> physical_size);
-
-
-    printf("\n");
-    printf("\n");
-    printf("\n");
-
-    COLUMN *col = create_column("Colonne 1");
-    insert_value(col, 52);
-    insert_value(col, 44);
-    insert_value(col, 15);
-    insert_value(col, 52);
-    print_col(col);
-
-    int val = 52;
-    int count = occurrences(col, val);
-    printf("Le nombre d'occurrences de %d dans la colonne est : %d\n", val, count);
-
-    int pos = 2;
-    int value = value_at_position(col, pos);
-    printf("La valeur a la position %d est : %d\n", pos, value);
-
-    int cpt = 0;
-    cpt = number_of_little_values(col, 40);
-    printf("Il y a %d valeurs inferieures a %d\n", cpt, 40);
-    cpt = number_of_big_values(col, 10);
-    printf("Il y a %d valeurs superieures a %d\n", cpt, 10);
-    cpt = number_of_equal_values(col, 15);
-    printf("Il y a %d valeurs egales a %d\n", cpt, 15);
-
-
-
-
-
-    printf("\n");
-    printf("\n");
-    printf("\n");
-    // Création de la colonne et insertion des valeurs
-    COLUMN *mycol = create_column("my_column");
-    insert_value(mycol, 52);
-    insert_value(mycol, 44);
-    insert_value(mycol, 15);
-    insert_value(mycol, 18);
-
-    // Affichage du contenu avant le tri
-    printf("Contenu de la colonne avant le tri :\n");
-    print_col(mycol);
-
-    // Tri de la colonne
-    sort(mycol, ASC);
-
-    // Affichage du contenu après le tri
-    printf("\nContenu de la colonne après le tri :\n");
-    print_col_by_index(mycol);
-
-    // Nettoyage de la mémoire
-    delete_column(&mycol);
-    */
-
+    // test_column();
 
     // test_cdataframe();
 
-    // main3();
+    // test_advanced_column();
 
-    test_advanced_cdataframe();
-
+    // test_advanced_cdataframe();
 
     return 0;
 }

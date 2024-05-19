@@ -26,11 +26,11 @@ COLUMN2 *create_column2(ENUM_TYPE type, char *title) {
     col -> title = (char*) malloc((len) * sizeof(char));   // allouer dynamiquement de l'espace mémoire pour la chaîne de caractères
     if (col -> title == NULL) printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");   // vérifier si l'allocation a échoué
     strcpy(col -> title, title);   // copier le titre dans le titre de la structure colonne
-    col -> size = 0;   // initialiser la taille logique à 0
-    col -> max_size = 0;   // initialiser la taille physique à 0
-    col -> column_type = type;   // initialiser le type de données
-    col -> data = NULL;   // initialiser à NULL le pointeur sur le tableau de données
-    col -> index = NULL;   // initialiser à NULL le tableau d'index
+    col -> size = 0;
+    col -> max_size = 0;
+    col -> column_type = type;
+    col -> data = NULL;
+    col -> index = NULL;
     return col;   // retourner un pointeur sur la structure créée
 }
 
@@ -55,7 +55,7 @@ int insert_value2(COLUMN2 *col, void *value) {
         }
         col -> max_size += REALOC_SIZE;   // incrémenter la taille physique avec la constante d'allocation
     }
-    switch(col -> column_type) {   // traiter tous les types de données
+    switch(col -> column_type) {   // traiter tous les types de données avec un switch case
         case UINT:   // traiter les unsigned int
             col -> data[col -> size] = (COL_TYPE*) malloc(sizeof(unsigned int));
             *((unsigned int*)(col -> data[col -> size])) = *((unsigned int*)value);
@@ -113,41 +113,37 @@ void delete_column2(COLUMN2 **col) {
 
 /**
  * Nom : convert_value
- * Paramètre :
- * Sortie :
- * Fonctionnement :
+ * Paramètre : pointeur sur une structure, entier i, chaîne de caractères, entier taille
+ * Sortie : /
+ * Fonctionnement : convertir tout type de données en chaîne de caractère afin de faciliter l'affichage
  */
-void convert_value(COLUMN2 *col, unsigned long long int i, char *str, int size) {
+void convert_value(COLUMN2 *col, int i, char *str, int size) {
     if (col == NULL) {   // vérifier que le pointeur est exploitable
-        printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
+        printf("ERREUR 4 (voir index des erreurs sur GitHub)\n");
         return;
     }
-    if (i >= col -> size) {
-        printf("ERREUR : L'indice de ligne est hors limites.\n");
+    if (i >= col -> size) {   // vérifier si l'indice de ligne est cohérent
+        printf("ERREUR 3 (voir index des erreurs sur GitHub)\n");
         return;
     }
-    switch (col -> column_type) {
-        case UINT:
+    switch (col -> column_type) {   // traiter tous les types de données avec un switch case
+        case UINT:   // traiter les unsigned int
             snprintf(str, size, "%u", *((unsigned int*)(col -> data[i])));
             break;
-        case INT:
+        case INT:   // traiter les entiers
             snprintf(str, size, "%d", *((int*)(col -> data[i])));
             break;
-        case CHAR:
+        case CHAR:   // traiter les caractères
             snprintf(str, size, "%c", *((char*)(col -> data[i])));
             break;
-        case FLOAT:
+        case FLOAT:   // traiter les flottants
             snprintf(str, size, "%f", *((float*)(col -> data[i])));
             break;
-        case DOUBLE:
+        case DOUBLE:   // traiter les doubles
             snprintf(str, size, "%lf", *((double*)(col -> data[i])));
             break;
-        case STRING:
+        case STRING:   // traiter les chaînes de carctères
             snprintf(str, size, "%s", (char*)(col -> data[i]));
-            break;
-        case STRUCTURE:
-            // Implémentez la conversion pour le type de structure si nécessaire
-            printf("ERREUR : Conversion pour le type de structure n'est pas encore implémentée.\n");
             break;
         default:
             printf("ERREUR : Type de colonne non pris en charge.\n");
@@ -157,44 +153,49 @@ void convert_value(COLUMN2 *col, unsigned long long int i, char *str, int size) 
 
 
 /**
- * Nom : print_col2
+ * Nom : print_col2 (2 pour éviter les erreurs de conflit)
  * Paramètre : pointeur vers la structure
- * Sortie :
- * Fonctionnement :
+ * Sortie : /
+ * Fonctionnement : afficher la colonne fournie
  */
 void print_col2(COLUMN2 *col) {
-    if (col == NULL) {
-        printf("ERREUR : La colonne n'existe pas.\n");
+    if (col == NULL) {   // vérifier que la colonne est exploitable
+        printf("ERREUR 4 (voir index des erreurs sur GitHub)\n");
         return;
     }
-    for (unsigned int i = 0; i < col -> size; ++i) {
-        char value_str[100];
-        convert_value(col, i, value_str, sizeof(value_str));
-        printf("[%u] %s\n", i, value_str);
+    for (int i = 0; i < col -> size; ++i) {   // parcourir la colonne
+        char str[100];
+        convert_value(col, i, str, sizeof(str));   // convertir en str
+        printf("[%u] %s\n", i, str);   // afficher l'élément de la colonne
     }
 }
 
 
-
+/**
+ * Nom : occurrences2 (2 pour éviter les erreurs de conflit)
+ * Paramètre : pointeur vers une structure, pointeur sur un entier
+ * Sortie : entier
+ * Fonctionnement : trouver le nombre d'occurrence d'un élément dans la colonne
+ */
 int occurrences2(COLUMN2 *col, void *x) {
-    if (col == NULL || x == NULL) {
-        return 0;
-    }
-
-    int cpt = 0;
-    switch (col->column_type) {
+    if (col == NULL || x == NULL) return 0;   // vérifier que les paramètres sont valides
+    int cpt = 0;   // initialiser un compteur à 0
+    switch (col -> column_type) {
         case INT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((int *)col -> data[i]) == *((int *)x)) cpt++;
+            for (int i = 0; i < col -> size; i++) if (*((int *)col -> data[i]) == *((int *)x)) cpt++;
             break;
         case CHAR:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((char *)col -> data[i]) == *((char *)x)) cpt++;
+            for (int i = 0; i < col -> size; i++) if (*((char *)col -> data[i]) == *((char *)x)) cpt++;
             break;
-
-
-            /**---------------------------------------------
-            // Ajouter les autres cas pour les autres types de données
-             ------------------------------------------------*/
-
+        case FLOAT:
+            for (int i = 0; i < col -> size; i++) if (*((float *)col -> data[i]) == *((float *)x)) cpt++;
+            break;
+        case DOUBLE:
+            for (int i = 0; i < col -> size; i++) if (*((double *)col -> data[i]) == *((double *)x)) cpt++;
+            break;
+        case STRING:
+            for (int i = 0; i < col -> size; i++) if (*((char *)col -> data[i]) == *((char *)x)) cpt++;
+            break;
         default:
             printf("ERREUR 7 (voir index des erreurs sur GitHub)\n");
             break;
@@ -203,28 +204,64 @@ int occurrences2(COLUMN2 *col, void *x) {
 }
 
 
-// Retourner la valeur présente à la position x
-void *value_at_position2(COLUMN2 *col, unsigned long long int x) {
-    if (col == NULL || x >= col -> size) {
-        return NULL;
-    }
-
-    return col->data[x];
+/**
+ * Nom : value_at_position2 (2 pour éviter les erreurs de conflit)
+ * Paramètre : pointeur vers une structure, entier
+ * Sortie : /
+ * Fonctionnement : trouver la valeur à la position x
+ */
+void *value_at_position2(COLUMN2 *col, int x) {
+    if (col == NULL || x >= col -> size) return NULL;   // vérifier que les paramètres sont valides
+    return col -> data[x];   // retourner la valeur à la position x
 }
 
 
-// Retourner le nombre de valeurs qui sont supérieures à x
+/**
+ * Nom : number_of_big_values2 (2 pour éviter les erreurs de conflit)
+ * Paramètre : pointeur vers une structure, entier
+ * Sortie : entier
+ * Fonctionnement : trouver le nombre de valeurs supérieures à x
+ */
 int number_of_big_values2(COLUMN2 *col, void *x) {
-    if (col == NULL || x == NULL) {
-        return 0;
-    }
+    if (col == NULL || x == NULL) return 0;   // vérifier que les paramètres sont valides
 
-    int count = 0;
+    int cpt = 0;
     switch (col -> column_type) {
         case INT:
             for (unsigned int i = 0; i < col -> size; i++) {
                 if (*((int *)col -> data[i]) > *((int *)x)) {
-                    count++;
+                    cpt++;
+                }
+            }
+            break;
+        case CHAR:
+            // Comparaisons pour le type char
+            break;
+
+
+            /**---------------------------------------------
+            // Ajouter les autres cas pour les autres types de données
+             ------------------------------------------------*/
+
+
+        default:
+            printf("Type de colonne non pris en charge\n");
+            break;
+    }
+
+    return cpt;
+}
+
+// Retourner le nombre de valeurs qui sont inférieures à x
+int number_of_little_values2(COLUMN2 *col, void *x) {
+    if (col == NULL || x == NULL) return 0;   // vérifier que les paramètres sont valides
+
+    int cpt = 0;
+    switch (col -> column_type) {
+        case INT:
+            for (unsigned int i = 0; i < col -> size; i++) {
+                if (*((int *)col -> data[i]) < *((int *)x)) {
+                    cpt++;
                 }
             }
             break;
@@ -237,46 +274,17 @@ int number_of_big_values2(COLUMN2 *col, void *x) {
             break;
     }
 
-    return count;
+    return cpt;
 }
 
-// Retourner le nombre de valeurs qui sont inférieures à x
-int number_of_little_values2(COLUMN2 *col, void *x) {
-    if (col == NULL || x == NULL) {
-        return 0;
-    }
+// Retourner le nombre de valeurs qui sont égales à x
+int number_of_equal_values2(COLUMN2 *col, void *x) {
+    if (col == NULL || x == NULL) return 0;   // vérifier que les paramètres sont valides
 
     int count = 0;
     switch (col -> column_type) {
         case INT:
             for (unsigned int i = 0; i < col -> size; i++) {
-                if (*((int *)col -> data[i]) < *((int *)x)) {
-                    count++;
-                }
-            }
-            break;
-        case CHAR:
-            // Comparaisons pour le type char
-            break;
-            // Ajouter les autres cas pour les autres types de données
-        default:
-            printf("Type de colonne non pris en charge\n");
-            break;
-    }
-
-    return count;
-}
-
-// Retourner le nombre de valeurs qui sont égales à x
-int number_of_equal_values2(COLUMN2 *col, void *x) {
-    if (col == NULL || x == NULL) {
-        return 0;
-    }
-
-    int count = 0;
-    switch (col -> column_type) {
-        case INT:
-            for (unsigned int i = 0; i < col->size; i++) {
                 if (*((int *)col -> data[i]) == *((int *)x)) {
                     count++;
                 }
@@ -306,7 +314,7 @@ int number_of_equal_values2(COLUMN2 *col, void *x) {
 
 
 
-int main3() {
+int test_advanced_column() {
     // Création d'une colonne de type CHAR
     COLUMN2 *char_col = create_column2(CHAR, "Char column");
     if (char_col == NULL) {
@@ -329,12 +337,12 @@ int main3() {
     printf("Nombre d'occurrences de '%c' : %d\n", search_char, occurrences2(char_col, &search_char));
 
     // Test de la fonction value_at_position
-    unsigned long long int pos = 1;
+    int pos = 1;
     void *val = value_at_position2(char_col, pos);
     if (val != NULL) {
-        printf("Valeur à la position %llu : %c\n", pos, *((char *)val));
+        printf("Valeur a la position %llu : %c\n", pos, *((char *)val));
     } else {
-        printf("Aucune valeur à la position %llu\n", pos);
+        printf("Aucune valeur a la position %llu\n", pos);
     }
 
     // Libération de la mémoire

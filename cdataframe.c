@@ -99,12 +99,15 @@ void print_dataframe(CDATAFRAME* dataframe) {
         printf("ERREUR 4 (voir index des erreurs sur GitHub)\n");
         return;
     }
+    printf("--------------------\n");
     for (int i = 0; i < dataframe -> number_col; i++) printf("%s\t", dataframe -> columns[i] -> Title);   // parcourir les colonnes et afficher les titres
     printf("\n");   // sauter une ligne
+    printf("--------------------\n");
     for (int i = 0; i < dataframe -> number_row; i++) {   // parcourir les lignes
         for (int j = 0; j < dataframe -> number_col; j++) printf("%d\t", dataframe -> columns[j] -> Datas[i]);   // parcourir les lignes et afficher les valeurs
         printf("\n");   // sauter une ligne
     }
+    printf("--------------------\n");
 }
 
 
@@ -119,12 +122,15 @@ void print_somme_rows(CDATAFRAME* dataframe, int val) {
         printf("ERREUR 4 (voir index des erreurs sur GitHub)\n");
         return;
     }
+    printf("--------------------\n");
     for (int i = 0; i < dataframe -> number_col; i++) printf("%s\t", dataframe -> columns[i] -> Title);   // afficher les titres des colonnes associées aux lignes
     printf("\n");   // sauter une ligne
+    printf("--------------------\n");
     for (int i = 0; i < val; i++) {
         for (int j = 0; j < dataframe -> number_col; j++) printf("%d\t", dataframe -> columns[j] -> Datas[i]);   // afficher les valeurs
         printf("\n");   // sauter une ligne
     }
+    printf("--------------------\n");
 }
 
 
@@ -139,12 +145,15 @@ void print_somme_columns(CDATAFRAME* dataframe, int val) {
         printf("ERREUR 4 (voir index des erreurs sur GitHub)\n");
         return;
     }
+    printf("--------------------\n");
     for (int i = 0; i < val; i++) printf("%s\t", dataframe -> columns[i] -> Title);   // afficher les titres des colonnes
     printf("\n");   // sauter une ligne
+    printf("--------------------\n");
     for (int i = 0; i < dataframe -> number_row; i++) {   // parcourir les colonnes du cdataframe
         for (int j = 0; j < val; j++) printf("%d\t", dataframe -> columns[j] -> Datas[i]);   // afficher les valeurs
         printf("\n");   // sauter une ligne
     }
+    printf("--------------------\n");
 }
 
 
@@ -411,53 +420,98 @@ int count_cells_inf(CDATAFRAME* dataframe, int val) {
 
 
 int test_cdataframe() {
-    // Création d'un CDataframe
+    // Créer notre CDataframe
     CDATAFRAME* dataframe = create_dataframe();
+    if (dataframe != NULL) printf("Test de la creation de notre CDataframe reussi !\n");
+    printf("\n");
 
-    // Remplissage du CDataframe
+    // Remplir le CDataframe en dur
     fill_dataframe(dataframe);
+    printf("Test du remplissage en dur de notre CDataframe reussi !\n");
+    printf("\n");
 
-    // Affichage des noms des colonnes
+    // Afficher des noms des colonnes
+    printf("Test de l'affichage des noms de colonnes :\n");
     print_column_names(dataframe);
     printf("\n");
 
-    // Affichage du CDataframe complet
+    // Afficher le CDataframe complet
+    printf("Test de l'affichage complet de notre CDataframe :\n");
     print_dataframe(dataframe);
     printf("\n");
 
-    // Ajout d'une nouvelle ligne au CDataframe
+    printf("Test du comptage des cellules (ici avec la valeur 4) :\n");
+    printf("Nombre de cellules contenant la valeur %d : %d\n", 4, count_cells_equal(dataframe, 4));
+    printf("Nombre de cellules contenant une valeur superieure a %d : %d\n", 4, count_cells_sup(dataframe, 4));
+    printf("Nombre de cellules contenant une valeur inferieure a %d : %d\n", 4, count_cells_inf(dataframe, 4));
+    printf("\n");
+
+    // Tester la recherche de valeur
+    printf("Test de la recherche d'une valeur dans le CDataframe :\n");
+    if (search_value(dataframe, 4)) printf("Youpi, la valeur %d est bien dans le CDataframe !\n", 4);
+    else printf("Oh zut, la valeur %d n'est pas dans le CDataframe.\n", 4);
+    printf("\n");
+
+    // Tester l'accès à une valeur
+    printf("Test de l'acces a une valeur dans le CDataframe :\n");
+    printf("Valeur a l'index (%d, %d) : %d\n", 1, 1, get_value(dataframe, 1, 1));
+    printf("\n");
+
+    // Tester la modification d'une valeur
+    set_value(dataframe, 1, 1, 99);
+    printf("Test de la modification d'une valeur dans le CDataframe (ici on va remplacer 5 par 99) :\n");
+    print_dataframe(dataframe);
+    printf("\n");
+
+    // Afficher un certain nombre de lignes
+    printf("Test de l'affichage d'un certain nombre de lignes du CDataframe (ici 2) :\n");
+    print_somme_rows(dataframe, 2);
+    printf("\n");
+
+    // Afficher un certain nombre de colonnes
+    printf("Test de l'affichage d'un certain nombre de colonnes du CDataframe (ici 2) :\n");
+    print_somme_columns(dataframe, 2);
+    printf("\n");
+
+    // Ajouter une nouvelle ligne au CDataframe
     int new_row_values[] = {10, 20, 30}; // Les valeurs de la nouvelle ligne
     add_row(dataframe, new_row_values);
+    printf("Test de l'ajout d'une nouvelle ligne au CDataframe :\n");
     print_dataframe(dataframe);
     printf("\n");
 
-    // Suppression de la deuxième ligne du CDataframe
+    // Supprimer une ligne du CDataframe
     remove_row(dataframe, 1);
+    printf("Test de la suppression d'une ligne au CDataframe (ici la seconde ligne) :\n");
     print_dataframe(dataframe);
     printf("\n");
 
-    // Ajout d'une nouvelle colonne au CDataframe
+    // Ajouter une nouvelle colonne au CDataframe
     add_column(dataframe, "Col4");
+    printf("Test de l'ajout d'une nouvelle colonne au CDataframe :\n");
     print_column_names(dataframe);
     printf("\n");
 
-    // Renommage de la première colonne
-    rename_column(dataframe, 0, "NewCol1");
+    // Supprimer une colonne du CDataframe
+    remove_column(dataframe, 1);
+    printf("Test de la suppression d'une colonne au CDataframe (ici la seconde colonne) :\n");
     print_column_names(dataframe);
     printf("\n");
 
+    // Renommer de la première colonne
+    rename_column(dataframe, 2, "New");
+    printf("Test du renommage d'une colonne au CDataframe :\n");
+    print_column_names(dataframe);
+    printf("\n");
 
+    // Afficher le nombre de lignes
+    printf("Test du comptage de nombre de lignes du CDataframe :\n");
     printf("Nombre de lignes dans le CDataframe : %d\n", count_rows(dataframe));
+    printf("\n");
+    // Afficher le nombre de colonnes
+    printf("Test du comptage de nombre de colonnes du CDataframe :\n");
     printf("Nombre de colonnes dans le CDataframe : %d\n", count_columns(dataframe));
-
-    int x;
-    printf("Entrez la valeur x : ");
-    scanf("%d", &x);
-
-    printf("Nombre de cellules contenant la valeur %d : %d\n", x, count_cells_equal(dataframe, x));
-    printf("Nombre de cellules contenant une valeur supérieure à %d : %d\n", x, count_cells_sup(dataframe, x));
-    printf("Nombre de cellules contenant une valeur inférieure à %d : %d\n", x, count_cells_inf(dataframe, x));
-
+    printf("\n");
 
     return 0;
 }

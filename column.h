@@ -31,7 +31,6 @@ typedef struct {   // structure de nos colonnes
 
 
 /**==========PROTOTYPES DES FONCTIONS GENERALES==========*/
-// fonctions générales
 COLUMN *create_column(char* title);   // prototype de la fonction permettant de créer une nouvelle colonne vide
 int insert_value(COLUMN* col, int value);   // prototype de la fonction permettant d'insérer une valeur dans une colonne
 void delete_column(COLUMN **col);   // prototype de la fonction permettant de supprimer une colonne
@@ -50,3 +49,5 @@ void erase_index(COLUMN *col);   // prototype de la fonction permettant d'efface
 int check_index(COLUMN *col);   // prototype de la fonction permettant de vérifier si une colonne dispose d’un index
 void update_index(COLUMN *col);   // prototype de la fonction permettant de mettre à jour un index
 int search_value_in_column(COLUMN *col, void *val);   // prototype de la fonction permettant de recherche une valeur donnée en paramètre dans une colonne triée
+
+int test_column();   // prototype de la fonction de test

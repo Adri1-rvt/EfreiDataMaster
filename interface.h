@@ -11,3 +11,4 @@
 
 /**==========PROTOTYPES DES FONCTIONS==========*/
 void menu();   // prototype de la fonction permettant d'afficher le menu de notre programme
+void credits();   // prototype de la fonction permettant d'afficher les crédits de notre programme
