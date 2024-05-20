@@ -1,5 +1,5 @@
 /**
- * Fichier : cdataframe.c
+ * Fichier : cdataframe.c (fichier gérant le cdataframe d'entiers)
  * Auteurs : Tess POIRAT, Adrien RIVET
  * Version : 1.2
  */
@@ -46,7 +46,7 @@ void fill_dataframe_by_input(CDATAFRAME* dataframe) {
         COLUMN* col = create_column(title);   // créer la colonne avec notre fonction de column.h
         dataframe -> columns[i] = col;   // ajouter la colonne au cdataframe
     }
-    for (int i = 0; i < dataframe->number_col; i++) {   // parcourir les colonnes
+    for (int i = 0; i < dataframe -> number_col; i++) {   // parcourir les colonnes
         printf("Entrez les valeur pour la colonne %s:\n", dataframe -> columns[i] -> Title);
         for (int j = 0; j < dataframe -> number_row; j++) {   // parcourir les lignes
             printf("Ligne [%d] : ", j + 1);
@@ -271,9 +271,9 @@ int search_value(CDATAFRAME* dataframe, int val) {
         printf("ERREUR 4 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
-    int bool = 0;   // initialiser la variable de recherche à 0 (valeur non trouvée)
-    for (int i = 0; i < dataframe -> number_col; i++) for (int j = 0; j < dataframe -> number_row; j++) if (dataframe -> columns[i] -> Datas[j] == val) bool = 1;   // parcourir les colonnes, puis les valeurs des lignes et comparer avec la valeur cherchée
-    return bool;   // retourner la variable de recherche
+    int find = 0;   // initialiser la variable de recherche à 0 (valeur non trouvée)
+    for (int i = 0; i < dataframe -> number_col; i++) for (int j = 0; j < dataframe -> number_row; j++) if (dataframe -> columns[i] -> Datas[j] == val) find = 1;   // parcourir les colonnes, puis les valeurs des lignes et comparer avec la valeur cherchée
+    return find;   // retourner la variable de recherche
 }
 
 

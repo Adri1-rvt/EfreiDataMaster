@@ -217,33 +217,33 @@ void *value_at_position2(COLUMN2 *col, int x) {
 
 
 /**
- * Nom : number_of_big_values2 (2 pour éviter les erreurs de conflit)
- * Paramètre : pointeur vers une structure, entier
+ * Nom : number_of_little_values2 (2 pour éviter les erreurs de conflit)
+ * Paramètre : pointeur vers une structure, pointeur
  * Sortie : entier
- * Fonctionnement : trouver le nombre de valeurs supérieures à x
+ * Fonctionnement : trouver le nombre de valeurs inférieures à x
  */
 // Retourner le nombre de valeurs qui sont inférieures à x
 int number_of_little_values2(COLUMN2 *col, void *x) {
     if (col == NULL || x == NULL) return 0;   // vérifier que les paramètres sont valides
     int cpt = 0;
     switch (col -> column_type) {
-        case UINT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((unsigned int *)col -> data[i]) < *((unsigned int *)x)) cpt++;
+        case UINT:   // traiter les entiers signés
+            for (int i = 0; i < col -> size; i++) if (*((unsigned int *)col -> data[i]) < *((unsigned int *)x)) cpt++;
             break;
-        case INT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((int *)col -> data[i]) < *((int *)x)) cpt++;
+        case INT:   // traiter les entiers
+            for (int i = 0; i < col -> size; i++) if (*((int *)col -> data[i]) < *((int *)x)) cpt++;
             break;
-        case CHAR:
-            for (unsigned int i = 0; i < col->size; i++) if (*((char *)col->data[i]) < *((char *)x)) cpt++;
+        case CHAR:   // traiter les caractères
+            for (int i = 0; i < col->size; i++) if (*((char *)col->data[i]) < *((char *)x)) cpt++;
             break;
-        case FLOAT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((float *)col -> data[i]) < *((float *)x)) cpt++;
+        case FLOAT:   // traiter les flottants
+            for (int i = 0; i < col -> size; i++) if (*((float *)col -> data[i]) < *((float *)x)) cpt++;
             break;
-        case DOUBLE:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((double *)col -> data[i]) < *((double *)x)) cpt++;
+        case DOUBLE:   // traiter les doubles
+            for (int i = 0; i < col -> size; i++) if (*((double *)col -> data[i]) < *((double *)x)) cpt++;
             break;
-        case STRING:
-            for (unsigned int i = 0; i < col->size; i++) if (strcmp((char *)col->data[i], (char *)x) < 0) cpt++;
+        case STRING:   // traiter les chaînes de carctères
+            for (int i = 0; i < col->size; i++) if (strcmp((char *)col->data[i], (char *)x) < 0) cpt++;
             break;
         default:
             printf("Type de colonne non pris en charge\n");
@@ -252,28 +252,34 @@ int number_of_little_values2(COLUMN2 *col, void *x) {
     return cpt;
 }
 
-// Retourner le nombre de valeurs qui sont supérieures à x
+
+/**
+ * Nom : number_of_big_values2 (2 pour éviter les erreurs de conflit)
+ * Paramètre : pointeur vers une structure, pointeur vers une donnée
+ * Sortie : entier
+ * Fonctionnement : trouver le nombre de valeurs supérieures à x
+ */
 int number_of_big_values2(COLUMN2 *col, void *x) {
     if (col == NULL || x == NULL) return 0;   // vérifier que les paramètres sont valides
     int cpt = 0;
     switch (col -> column_type) {
-        case UINT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((unsigned int *)col -> data[i]) > *((unsigned int *)x)) cpt++;
+        case UINT:   // traiter les entiers signés
+            for (int i = 0; i < col -> size; i++) if (*((unsigned int *)col -> data[i]) > *((unsigned int *)x)) cpt++;
             break;
-        case INT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((int *)col -> data[i]) > *((int *)x)) cpt++;
+        case INT:   // traiter les entiers
+            for (int i = 0; i < col -> size; i++) if (*((int *)col -> data[i]) > *((int *)x)) cpt++;
             break;
-        case CHAR:
-            for (unsigned int i = 0; i < col->size; i++) if (*((char *)col->data[i]) > *((char *)x)) cpt++;
+        case CHAR:   // traiter les caractères
+            for (int i = 0; i < col->size; i++) if (*((char *)col->data[i]) > *((char *)x)) cpt++;
             break;
-        case FLOAT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((float *)col -> data[i]) > *((float *)x)) cpt++;
+        case FLOAT:   // traiter les flottants
+            for (int i = 0; i < col -> size; i++) if (*((float *)col -> data[i]) > *((float *)x)) cpt++;
             break;
-        case DOUBLE:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((double *)col -> data[i]) > *((double *)x)) cpt++;
+        case DOUBLE:   // traiter les doubles
+            for (int i = 0; i < col -> size; i++) if (*((double *)col -> data[i]) > *((double *)x)) cpt++;
             break;
-        case STRING:
-            for (unsigned int i = 0; i < col->size; i++) if (strcmp((char *)col->data[i], (char *)x) > 0) cpt++;
+        case STRING:   // traiter les chaînes de carctères
+            for (int i = 0; i < col->size; i++) if (strcmp((char *)col->data[i], (char *)x) > 0) cpt++;
             break;
         default:
             printf("Type de colonne non pris en charge\n");
@@ -282,28 +288,34 @@ int number_of_big_values2(COLUMN2 *col, void *x) {
     return cpt;
 }
 
-// Retourner le nombre de valeurs qui sont égales à x
+
+/**
+ * Nom : number_of_equal_values2 (2 pour éviter les erreurs de conflit)
+ * Paramètre : pointeur vers une structure, pointeur vers une donnée
+ * Sortie : entier
+ * Fonctionnement : trouver le nombre de valeurs égales à x
+ */
 int number_of_equal_values2(COLUMN2 *col, void *x) {
     if (col == NULL || x == NULL) return 0;   // vérifier que les paramètres sont valides
     int cpt = 0;
     switch (col -> column_type) {
-        case UINT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((unsigned int *)col -> data[i]) == *((unsigned int *)x)) cpt++;
+        case UINT:   // traiter les entiers signés
+            for (int i = 0; i < col -> size; i++) if (*((unsigned int *)col -> data[i]) == *((unsigned int *)x)) cpt++;
             break;
-        case INT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((int *)col -> data[i]) == *((int *)x)) cpt++;
+        case INT:   // traiter les entiers
+            for (int i = 0; i < col -> size; i++) if (*((int *)col -> data[i]) == *((int *)x)) cpt++;
             break;
-        case CHAR:
-            for (unsigned int i = 0; i < col->size; i++) if (*((char *)col->data[i]) == *((char *)x)) cpt++;
+        case CHAR:   // traiter les caractères
+            for (int i = 0; i < col->size; i++) if (*((char *)col->data[i]) == *((char *)x)) cpt++;
             break;
-        case FLOAT:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((float *)col -> data[i]) == *((float *)x)) cpt++;
+        case FLOAT:   // traiter les flottants
+            for (int i = 0; i < col -> size; i++) if (*((float *)col -> data[i]) == *((float *)x)) cpt++;
             break;
-        case DOUBLE:
-            for (unsigned int i = 0; i < col -> size; i++) if (*((double *)col -> data[i]) == *((double *)x)) cpt++;
+        case DOUBLE:   // traiter les doubles
+            for (int i = 0; i < col -> size; i++) if (*((double *)col -> data[i]) == *((double *)x)) cpt++;
             break;
-        case STRING:
-            for (unsigned int i = 0; i < col->size; i++) if (strcmp((char *)col->data[i], (char *)x) == 0) cpt++;
+        case STRING:   // traiter les chaînes de carctères
+            for (int i = 0; i < col->size; i++) if (strcmp((char *)col->data[i], (char *)x) == 0) cpt++;
             break;
         default:
             printf("Type de colonne non pris en charge\n");

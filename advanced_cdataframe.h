@@ -12,7 +12,7 @@
 /**==========STRUCTURE==========*/
 struct dataframe {
     COLUMN2 **columns; // Tableau de pointeurs vers les colonnes
-    unsigned int num_columns; // Nombre de colonnes dans le dataframe
+    int num_columns; // Nombre de colonnes dans le dataframe
 };
 typedef struct dataframe DATAFRAME2;
 

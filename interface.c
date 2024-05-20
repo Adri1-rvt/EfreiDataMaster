@@ -10,8 +10,14 @@
 
 
 /**==========FONCTIONS==========*/
+/**
+ * Nom : menu
+ * Paramètre : /
+ * Sortie : /
+ * Fonctionnement : afficher le menu de notre programme
+ */
 void menu() {
-    // afficher le logo en caractères ascii de notre projet (parce qu'on a du style !)
+    // afficher le logo en caractères ascii de notre projet (parce qu'on a du style nous !)
     printf("___________ _____               .__________          __             _____                   __                \n"
            "\\_   _____// ____\\______   ____ |__\\______ \\ _____ _/  |______     /     \\ _____    _______/  |_  ___________ \n"
            " |    __)_\\   __\\\\_  __ \\_/ __ \\|  ||    |  \\\\__  \\\\   __\\__  \\   /  \\ /  \\\\__  \\  /  ___/\\   __\\/ __ \\_  __ \\\n"
@@ -19,7 +25,7 @@ void menu() {
            "/_______  /|__|   |__|    \\___  >__/_______  (____  /__| (____  /\\____|__  (____  /____  > |__|  \\___  >__|   \n"
            "        \\/                    \\/           \\/     \\/          \\/         \\/     \\/     \\/            \\/       \n\n");
 
-    // afficher les informations importantes du projet
+    // afficher les informations importantes du projet (moi qui code des tools de hacking d'habitude je trouve que ça fait pro)
     printf("\t==============================================================================================\n"
            "\tAuteurs         : Tess POIRAT, Adrien RIVET                    |                             |\n"
            "\tVersion         : v1.2                                         |           Appuyez           |\n"
@@ -29,9 +35,10 @@ void menu() {
            "\tBienvenue sur EfreiDataMaster, le projet C qui va vous         |           Lancer            |\n"
            "\tpermettre de liberer la puissance des donnees !                |                             |\n"
            "\t==============================================================================================\n\n\n");
+
     getchar();   // mettre en pause le programme tant que l'utilisateur ne l'a pas lancé
 
-    // afficher les fonctionnalités pou que l'utilisateur puisse choissir
+    // afficher les fonctionnalités pour que l'utilisateur puisse choissir
     printf("=====================================================================================================================\n"
            "LES (INCROYABLES) FONCTIONNALITES D'EFREIDATAMASTER :\n\n"
            "    LANCER \n"
@@ -45,9 +52,15 @@ void menu() {
            "    [6] Credits et commentaires\n"
            "    [7] Quitter le programme\n"
            "=====================================================================================================================\n\n");
-
 }
 
+
+/**
+ * Nom : credits
+ * Paramètre : /
+ * Sortie : /
+ * Fonctionnement : afficher les crédits de notre programme
+ */
 void credits() {
     printf("Ce programme a ete programme par Tess POIRAT & Adrien RIVET, "
            "\navec la precieuse aide de nos professeurs Mr. KLAI et Mr. KMIMECH"
@@ -58,6 +71,12 @@ void credits() {
 }
 
 
+/**
+ * Nom : mode1
+ * Paramètre : /
+ * Sortie : /
+ * Fonctionnement : afficher les fonctionnalités de notre programme en mode 1
+ */
 void mode1() {
     // afficher le catalogue des fonctionnalités
     printf("===============================================================\n"
@@ -81,23 +100,4 @@ void mode1() {
            "    [26] Quitter le programme                                 [24] Mettre a jour un index\n"
            "    [27] Sortir du mode classic                               [25] Recherche dichotomique\n\n"
            "===============================================================\n\n");
-}
-
-void mode2() {
-    // afficher le catalogue des fonctionnalités
-    printf("===============================================================\n"
-           "OPERATIONS DANS LE CDATAFRAME DE TOUS TYPES DE DONNEES:\n\n"
-           "    ALIMENTATION :                                            AFFICHAGE :\n"
-           "    [01] Creer                                                [04] Afficher\n"
-           "    [02] Remplir par saisies                                  [05] Afficher une partie des lig selon une limite\n"
-           "    [03] Remplir en dur                                       [06] Afficher une partie des col selon une limite\n\n"
-           "    OPERATIONS USUELLES :                                     ANALYSE ET STATISTIQUES :\n"
-           "    [07] Ajouter une lig de val                               [15] Afficher le nb de lig\n"
-           "    [08] Supprimer une lig de val                             [16] Afficher le nb de col\n"
-           "    [09] Ajouter une col                                      [17] Nb de cellules contenant une val = x\n"
-           "    [10] Supprimer une col                                    [18] Nb de cellules contenant une val > x\n"
-           "    [11] Renommer le titre d une col                          [19] Nb de cellules contenant une val < x\n"
-           "    [12] Verifier l existence d une val\n"
-           "    [14] Afficher les noms des col                            [20] Sortir du mode classic \n\n"
-           "===============================================================\n\n\n");
 }

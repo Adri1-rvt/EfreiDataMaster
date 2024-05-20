@@ -22,7 +22,7 @@ COLUMN *create_column(char* title) {
     int len = strlen(title) + 1;
     col -> Title = (char*) malloc((len) * sizeof(char));   // allouer dynamiquement de l'espace mémoire pour le titre passé en paramètre
     if (col -> Title == NULL) printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");   // vérifier si le pointeur retourné par malloc n'est pas égal à NULL (car espace insuffisant)
-    strcpy(col->Title, title);   // copier le titre passé en paramètre dans le nom de notre colonne
+    strcpy(col -> Title, title);   // copier le titre passé en paramètre dans le nom de notre colonne
     col -> logical_size = 0;
     col -> physical_size = 0;
     col -> Datas = NULL;
@@ -95,8 +95,7 @@ void print_col(COLUMN* col) {
         printf("Oh zut, la colonne est vide !\n");
         return;
     }
-    for (int i = 0; i < col -> logical_size; i++)   // parcourir chaque élément de la colonne
-        printf("[%d] :   %d\n", i, col->Datas[i]);   // afficher la valeur à côté de son indice
+    for (int i = 0; i < col -> logical_size; i++) printf("[%d] :   %d\n", i, col -> Datas[i]);   // arcourir chaque élément de la colonne et afficher la valeur à côté de son indice
 }
 
 
@@ -155,7 +154,7 @@ int number_of_little_values(COLUMN* col, int x) {
 
 
 /**
- * Nom : number_of_little_values
+ * Nom : number_of_big_values
  * Paramètre : pointeur vers une structure, entier à chercher
  * Sortie : entier représentant un compteur
  * Fonctionnement : parcourir une colonne pour trouver le nombre de valeurs supérieures

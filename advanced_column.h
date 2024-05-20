@@ -35,7 +35,7 @@ struct column {   // structure pour une colonne
     unsigned int max_size;   // taille physique
     ENUM_TYPE column_type;   // énumération du type de données
     COL_TYPE **data;   // tableau de pointeurs vers les données stockées
-    unsigned long long int *index;   // tableau d'entiers
+    int *index;   // tableau d'entiers
 };
 typedef struct column COLUMN2;   // définir le nom de la structure sur COLUMN2 (ajout du 2 pour éviter les erreurs de conflit avec column.h)
 
