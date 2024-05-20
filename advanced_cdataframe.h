@@ -43,4 +43,5 @@ int get_num_rows(COLUMN2 *column);
 void print_num_rows2(DATAFRAME2 *dataframe);   // prototype de la fonction permettant de compter les lignes
 void print_num_columns2(DATAFRAME2 *dataframe);   // prototype de la fonction permettant de compter les colonnes
 
+// Test
 int test_advanced_cdataframe();   // prototype de la fonction de test du cdataframe avancé

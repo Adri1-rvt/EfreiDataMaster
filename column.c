@@ -23,9 +23,9 @@ COLUMN *create_column(char* title) {
     col -> Title = (char*) malloc((len) * sizeof(char));   // allouer dynamiquement de l'espace mémoire pour le titre passé en paramètre
     if (col -> Title == NULL) printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");   // vérifier si le pointeur retourné par malloc n'est pas égal à NULL (car espace insuffisant)
     strcpy(col->Title, title);   // copier le titre passé en paramètre dans le nom de notre colonne
-    col -> logical_size = 0;   // initialiser la taille logique de notre structure à 0
-    col -> physical_size = 0;   // initialiser la taille physique de notre structure à 0
-    col -> Datas = NULL;   // initialiser le tableau de valeurs de notre structure à NULL
+    col -> logical_size = 0;
+    col -> physical_size = 0;
+    col -> Datas = NULL;
     return col;   // retourner un pointeur sur la structure
 }
 
@@ -91,7 +91,6 @@ void print_col(COLUMN* col) {
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return;
     }
-    printf("Les valeurs de la colonne \"%s\" sont :\n", col -> Title);   // afficher le titre de la colonne
     if (col -> logical_size == 0) {   // vérifier si la colonne est vide
         printf("Oh zut, la colonne est vide !\n");
         return;
@@ -192,12 +191,10 @@ int number_of_equal_values(COLUMN* col, int x) {
 
 /**==========FONCTIONS AVANCEES DES COLONNES==========*/
 /**
- * Nom : partition
- * Paramètre :
- * Sortie :
- * Fonctionnement : partitioner pour le tri rapide (Quicksort)
+ * Function: partition
+ * Purpose: Partitioner for quicksort
  */
-int partition(int Tab[], int left, int right) {
+int partition(int Tab[], int left, int right, long* index) {
     int pivot = Tab[right];
     int i = (left - 1);
 
@@ -207,58 +204,60 @@ int partition(int Tab[], int left, int right) {
             int tmp = Tab[i];
             Tab[i] = Tab[j];
             Tab[j] = tmp;
+
+            long tmp_idx = index[i];
+            index[i] = index[j];
+            index[j] = tmp_idx;
         }
     }
     int tmp = Tab[i + 1];
     Tab[i + 1] = Tab[right];
     Tab[right] = tmp;
+
+    long tmp_idx = index[i + 1];
+    index[i + 1] = index[right];
+    index[right] = tmp_idx;
+
     return (i + 1);
 }
 
-
 /**
- * Nom : quicksort
- * Paramètre :
- * Sortie :
- * Fonctionnement : trier rapidement (Quicksort)
+ * Function: quicksort
+ * Purpose: Quick sort algorithm
  */
-void quicksort(int Tab[], int left, int right) {
+void quicksort(int Tab[], int left, int right, long* index) {
     if (left < right) {
-        int pi = partition(Tab, left, right);
-        quicksort(Tab, left, pi - 1);
-        quicksort(Tab, pi + 1, right);
+        int pi = partition(Tab, left, right, index);
+        quicksort(Tab, left, pi - 1, index);
+        quicksort(Tab, pi + 1, right, index);
     }
 }
 
-
 /**
- * Nom : insertion
- * Paramètre :
- * Sortie :
- * Fonctionnement : trier par sélection
+ * Function: insertion
+ * Purpose: Insertion sort algorithm
  */
-void insertion(int Tab[], int n) {
+void insertion(int Tab[], int n, long* index) {
     for (int i = 1; i < n; i++) {
         int k = Tab[i];
+        long idx = index[i];
         int j = i - 1;
 
         while (j >= 0 && Tab[j] > k) {
             Tab[j + 1] = Tab[j];
+            index[j + 1] = index[j];
             j--;
         }
-
         Tab[j + 1] = k;
+        index[j + 1] = idx;
     }
 }
 
 
 /**
- * Nom : sort
- * Paramètre :
- * Sortie :
- * Fonctionnement :
+ * Function: sort
+ * Purpose: Sort a column according to a given order
  */
-// Fonction de tri principal
 void sort(COLUMN* col, int sort_dir) {
     if (col == NULL) {
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
@@ -281,18 +280,19 @@ void sort(COLUMN* col, int sort_dir) {
     }
 
     // Allouer et initialiser le tableau d'index
-    col->index = (unsigned long long*)malloc(col->logical_size * sizeof(unsigned long long));
     if (col->index == NULL) {
-        printf("ERREUR : Impossible d'allouer de la mémoire pour l'index.\n");
-        return;
+        col->index = (long*)malloc(col->logical_size * sizeof(long));
     }
     for (int i = 0; i < col->logical_size; i++) {
         col->index[i] = i;
     }
 
     // Tri du tableau de données
-    if (col -> valid_index == 0) quicksort(col -> Datas, 0, col -> logical_size - 1);   // utiliser le tri rapide (Quicksort)
-    if (col -> valid_index == -1) insertion(col -> Datas, col -> logical_size);   // utiliser le tri par insertion
+    if (col->valid_index == 0) {
+        quicksort(col->Datas, 0, col->logical_size - 1, col->index);   // utiliser le tri rapide (Quicksort)
+    } else if (col->valid_index == -1) {
+        insertion(col->Datas, col->logical_size, col->index);   // utiliser le tri par insertion
+    }
 
     // Mise à jour de valid_index et sort_dir
     col->valid_index = 1;
@@ -301,10 +301,8 @@ void sort(COLUMN* col, int sort_dir) {
 
 
 /**
- * Nom : print_col_by_index
- * Paramètre :
- * Sortie :
- * Fonctionnement : afficher de la colonne triée par index
+ * Function: print_col_by_index
+ * Purpose: Display the content of a sorted column
  */
 void print_col_by_index(COLUMN* col) {
     if (col == NULL) {
@@ -312,53 +310,43 @@ void print_col_by_index(COLUMN* col) {
         return;
     }
 
-    if (col -> valid_index != 1) {
+    if (col->valid_index != 1) {
         printf("ERREUR : La colonne n'est pas triée ou l'index est invalide.\n");
         return;
     }
 
-    printf("Contenu de la colonne \"%s\" après le tri :\n", col ->  Title);
+    printf("Contenu de la colonne \"%s\" après le tri :\n", col->Title);
 
-    for (unsigned int i = 0; i < col -> logical_size; i++) {
-        printf("[%u] ", i);
-        if (col -> Datas[col -> index[i]] != NULL) {
-            printf("%d\n", col -> Datas[col -> index[i]]);
-        } else {
-            printf("NULL\n");
-        }
+    for (int i = 0; i < col->logical_size; i++) {
+        printf("[%d] %d\n", i, col->Datas[col->index[i]]);
     }
 }
 
-
 /**
- * Nom : erase_index
- * Paramètre :
- * Sortie :
- * Fonctionnement : supprimer le tableau d'index ((pour libérer de l'espace mémoire)
+ * Function: erase_index
+ * Purpose: Remove the index of a column
  */
-void erase_index(COLUMN *col) {
+void erase_index(COLUMN* col) {
     if (col == NULL) {
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return;
     }
 
-    if (col -> valid_index != 0) {
-        free(col -> index);   // libérer la mémoire du tableau des index
-        col -> index = NULL;    // mettre le pointeur à NULL
-        col -> valid_index = 0;    // mettre l'attribut valid_index à 0
+    if (col->valid_index != 0) {
+        free(col->index);   // libérer la mémoire du tableau des index
+        col->index = NULL;    // mettre le pointeur à NULL
+        col->valid_index = 0;    // mettre l'attribut valid_index à 0
         printf("SUCCESS : L'index de la colonne a été effacé avec succès.\n");
+    } else {
+        printf("ERREUR : La colonne n'a pas d'index associé.\n");
     }
-    else printf("ERREUR : La colonne n'a pas d'index associé.\n");
 }
 
-
 /**
- * Nom : check_index
- * Paramètre :
- * Sortie :
- * Fonctionnement :
+ * Function: check_index
+ * Purpose: Check if an index is correct
  */
-int check_index(COLUMN *col) {
+int check_index(COLUMN* col) {
     if (col == NULL) {
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 0;
@@ -376,25 +364,19 @@ int check_index(COLUMN *col) {
     }
 }
 
-
 /**
- * Nom : update_index
- * Paramètre :
- * Sortie :
- * Fonctionnement :
+ * Function: update_index
+ * Purpose: Update the index
  */
-void update_index(COLUMN *col) {
-    sort(col, col -> sort_dir);   // appeler la fonction de tri pour mettre à jour l'index
+void update_index(COLUMN* col) {
+    sort(col, col->sort_dir);   // appeler la fonction de tri pour mettre à jour l'index
 }
 
-
 /**
- * Nom : search_value_in_column
- * Paramètre :
- * Sortie :
- * Fonctionnement :
+ * Function: search_value_in_column
+ * Purpose: Check if a value exists in a column
  */
-int search_value_in_column(COLUMN *col, void *val) {
+int search_value_in_column(COLUMN* col, void* val) {
     if (col == NULL) {
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 0;
@@ -410,70 +392,123 @@ int search_value_in_column(COLUMN *col, void *val) {
 
     while (left <= right) {
         int mid = left + (right - left) / 2;
-
-        if (col->Datas[col->index[mid]] == *(int *)val) {
-            printf("La valeur a été trouvée à l'indice %d.\n", col->index[mid]);
-            return 1;
-        }
-
-        if (col->Datas[col->index[mid]] < *(int *)val) {
+        if (col->Datas[col->index[mid]] == (int)val)
+            return 1; // La valeur a été trouvée
+        else if (col->Datas[col->index[mid]] < (int)val)
             left = mid + 1;
-        } else {
+        else
             right = mid - 1;
-        }
     }
-
-    printf("La valeur n'a pas été trouvée dans la colonne.\n");
-    return 0;
+    return 0; // La valeur n'a pas été trouvée
 }
 
 
+
+
+/**==========FONCTION DE TEST DES COLONNES==========*/
 int test_column() {
+    // Créer notre colonne
     COLUMN *col = create_column("Colonne 1");
+    if (col != NULL) printf("Test de la creation de notre colonne reussi !\n");
+    printf("\n");
+
+    // Insérer des valeurs dans notre colonne
     insert_value(col, 52);
     insert_value(col, 44);
     insert_value(col, 15);
     insert_value(col, 52);
+    printf("Test de l'insertion de 4 valeurs dans notre colonne :\n");
     print_col(col);
+    printf("\n");
 
-    int val = 52;
-    int count = occurrences(col, val);
-    printf("Le nombre d'occurrences de %d dans la colonne est : %d\n", val, count);
+    // Trouver le nombre d'occurrences d'une valeur dans notre colonne
+    printf("Test du nombre d'occurrences d'une valeur dans notre colonne (ici 52) :\n");
+    int count = occurrences(col, 52);
+    printf("Le nombre d'occurrences de %d dans la colonne est : %d\n", 52, count);
+    printf("\n");
 
-    int pos = 2;
-    int value = value_at_position(col, pos);
-    printf("La valeur a la position %d est : %d\n", pos, value);
+    // Trouver la valeur à une certaine position
+    printf("Test de la valeur a une certaine position (ici 2) :\n");
+    int value = value_at_position(col, 2);
+    printf("La valeur a la position %d est : %d\n", 2, value);
+    printf("\n");
 
+    // Trouver le rapport entre les val
     int cpt = 0;
+    printf("Test des valeurs inferieures a une certaine valeur (ici 40) :\n");
     cpt = number_of_little_values(col, 40);
     printf("Il y a %d valeurs inferieures a %d\n", cpt, 40);
+    printf("\n");
+    printf("Test des valeurs superieures a une certaine valeur (ici 10) :\n");
     cpt = number_of_big_values(col, 10);
     printf("Il y a %d valeurs superieures a %d\n", cpt, 10);
+    printf("\n");
+    printf("Test des valeurs egales a une certaine valeur (ici 15) :\n");
     cpt = number_of_equal_values(col, 15);
     printf("Il y a %d valeurs egales a %d\n", cpt, 15);
+    printf("\n");
 
 
+
+
+
+
+
     printf("\n");
     printf("\n");
     printf("\n");
-    // Création de la colonne et insertion des valeurs
-    COLUMN *mycol = create_column("my_column");
+    // Exemple d'utilisation
+    COLUMN* mycol = create_column("Exemple");
     insert_value(mycol, 52);
     insert_value(mycol, 44);
     insert_value(mycol, 15);
     insert_value(mycol, 18);
-
-    // Affichage du contenu avant le tri
     printf("Contenu de la colonne avant le tri :\n");
     print_col(mycol);
 
-    // Tri de la colonne
     sort(mycol, ASC);
-
-    // Affichage du contenu après le tri
-    printf("\nContenu de la colonne après le tri :\n");
+    printf("Contenu de la colonne après le tri :\n");
     print_col_by_index(mycol);
 
-    // Nettoyage de la mémoire
-    delete_column(&mycol);
+// Exemple avec des chaînes de caractères
+    COLUMN* strcol = create_column("Strings");
+    insert_value(strcol, 72);
+    insert_value(strcol, 44);
+    insert_value(strcol, 95);
+    insert_value(strcol, 18);
+
+    printf("Contenu de la colonne de chaînes de caractères avant le tri :\n");
+    print_col(strcol);
+
+    sort(strcol, DESC);
+    printf("Contenu de la colonne de chaînes de caractères après le tri :\n");
+    print_col_by_index(strcol);
+
+// Vérification de l'index
+    check_index(strcol);
+
+// Recherche d'une valeur
+    int search_value = 72;
+    int found = search_value_in_column(strcol, &search_value);
+    if (found)
+        printf("La valeur %d a été trouvée dans la colonne.\n", search_value);
+    else
+        printf("La valeur %d n'a pas été trouvée dans la colonne.\n", search_value);
+
+// Suppression de l'index
+    erase_index(strcol);
+    check_index(strcol);
+
+// Libération de la mémoire
+    free(mycol->Datas);
+    free(mycol->Title);
+    free(mycol->index);
+    free(mycol);
+
+    free(strcol->Datas);
+    free(strcol->Title);
+    free(strcol->index);
+    free(strcol);
+
+    return 0;
 }

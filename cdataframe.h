@@ -50,4 +50,5 @@ int count_cells_equal(CDATAFRAME* dataframe, int val);   // prototype de la fonc
 int count_cells_sup(CDATAFRAME* dataframe, int val);   // prototype de la fonction permettant de compter les cellules > x
 int count_cells_inf(CDATAFRAME* dataframe, int val);   // prototype de la fonction permettant de compter les cellules < x
 
+// Test
 int test_cdataframe();   // prototype de la fonction de test du cdataframe

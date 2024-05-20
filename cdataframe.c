@@ -22,8 +22,8 @@ CDATAFRAME* create_dataframe() {
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return NULL;
     }
-    dataframe -> number_col = 0;   // initialiser le nombre de colonnes à 0
-    dataframe -> number_row = 0;   // initialiser le nombre de lignes à 0
+    dataframe -> number_col = 0;
+    dataframe -> number_row = 0;
     return dataframe;   // retourner un pointeur vers la structure créée
 }
 
@@ -36,13 +36,13 @@ CDATAFRAME* create_dataframe() {
  */
 void fill_dataframe_by_input(CDATAFRAME* dataframe) {
     printf("Nombre de colonnes : ");
-    scanf("%d", &dataframe -> number_col);   // saisir le nombre de colonnes
+    scanf("%d", &dataframe -> number_col);
     printf("Nombre de lignes : ");
-    scanf("%d", &dataframe -> number_row);   // saisir le nombre de lignes
+    scanf("%d", &dataframe -> number_row);
     for (int i = 0; i < dataframe -> number_row; i++) {   // parcourir les lignes du cdataframe
         char title[50];   // créer une chaîne de 50 caractères
         printf("Titre pour la colonne [%d]: ", i + 1);
-        scanf("%s", title);   // saisir le titre
+        scanf("%s", title);
         COLUMN* col = create_column(title);   // créer la colonne avec notre fonction de column.h
         dataframe -> columns[i] = col;   // ajouter la colonne au cdataframe
     }
@@ -51,7 +51,7 @@ void fill_dataframe_by_input(CDATAFRAME* dataframe) {
         for (int j = 0; j < dataframe -> number_row; j++) {   // parcourir les lignes
             printf("Ligne [%d] : ", j + 1);
             int val;
-            scanf("%d", &val);   // saisir la valeur
+            scanf("%d", &val);
             insert_value(dataframe -> columns[i], val);   // insérer la valeur
         }
     }
@@ -69,21 +69,21 @@ void fill_dataframe(CDATAFRAME* dataframe) {
     dataframe -> number_row = 3;   // initialiser le nombre de lignes à 3
 
     COLUMN* col1 = create_column("Col1");   // créer une première colonne
-    insert_value(col1, 1);   // insérer une valeur
-    insert_value(col1, 2);   // insérer une valeur
-    insert_value(col1, 3);   // insérer une valeur
+    insert_value(col1, 1);
+    insert_value(col1, 2);
+    insert_value(col1, 3);
     dataframe -> columns[0] = col1;   // mettre la colonne dans le cdataframe
 
     COLUMN* col2 = create_column("Col2");   // créer une seconde colonne
-    insert_value(col2, 4);   // insérer une valeur
-    insert_value(col2, 5);   // insérer une valeur
-    insert_value(col2, 6);   // insérer une valeur
+    insert_value(col2, 4);
+    insert_value(col2, 5);
+    insert_value(col2, 6);
     dataframe -> columns[1] = col2;   // mettre la colonne dans le cdataframe
 
     COLUMN* col3 = create_column("Col3");   // créer une troisième colonne
-    insert_value(col3, 7);   // insérer une valeur
-    insert_value(col3, 8);   // insérer une valeur
-    insert_value(col3, 9);   // insérer une valeur
+    insert_value(col3, 7);
+    insert_value(col3, 8);
+    insert_value(col3, 9);
     dataframe -> columns[2] = col3;   // mettre la colonne dans le cdataframe
 }
 
@@ -101,11 +101,11 @@ void print_dataframe(CDATAFRAME* dataframe) {
     }
     printf("--------------------\n");
     for (int i = 0; i < dataframe -> number_col; i++) printf("%s\t", dataframe -> columns[i] -> Title);   // parcourir les colonnes et afficher les titres
-    printf("\n");   // sauter une ligne
+    printf("\n");
     printf("--------------------\n");
     for (int i = 0; i < dataframe -> number_row; i++) {   // parcourir les lignes
         for (int j = 0; j < dataframe -> number_col; j++) printf("%d\t", dataframe -> columns[j] -> Datas[i]);   // parcourir les lignes et afficher les valeurs
-        printf("\n");   // sauter une ligne
+        printf("\n");
     }
     printf("--------------------\n");
 }
@@ -124,11 +124,11 @@ void print_somme_rows(CDATAFRAME* dataframe, int val) {
     }
     printf("--------------------\n");
     for (int i = 0; i < dataframe -> number_col; i++) printf("%s\t", dataframe -> columns[i] -> Title);   // afficher les titres des colonnes associées aux lignes
-    printf("\n");   // sauter une ligne
+    printf("\n");
     printf("--------------------\n");
     for (int i = 0; i < val; i++) {
         for (int j = 0; j < dataframe -> number_col; j++) printf("%d\t", dataframe -> columns[j] -> Datas[i]);   // afficher les valeurs
-        printf("\n");   // sauter une ligne
+        printf("\n");
     }
     printf("--------------------\n");
 }
@@ -147,11 +147,11 @@ void print_somme_columns(CDATAFRAME* dataframe, int val) {
     }
     printf("--------------------\n");
     for (int i = 0; i < val; i++) printf("%s\t", dataframe -> columns[i] -> Title);   // afficher les titres des colonnes
-    printf("\n");   // sauter une ligne
+    printf("\n");
     printf("--------------------\n");
     for (int i = 0; i < dataframe -> number_row; i++) {   // parcourir les colonnes du cdataframe
         for (int j = 0; j < val; j++) printf("%d\t", dataframe -> columns[j] -> Datas[i]);   // afficher les valeurs
-        printf("\n");   // sauter une ligne
+        printf("\n");
     }
     printf("--------------------\n");
 }
@@ -213,7 +213,7 @@ void add_column(CDATAFRAME* dataframe, char* title) {
         return;
     }
     COLUMN* col = create_column(title);   // créer une nouvelle colonne avec notre fonction de column.h
-    int pos = dataframe -> number_col;   // sauvegarder le nombre de colonnes dans une variable
+    int pos = dataframe -> number_col;
     dataframe -> columns[pos] = col;   // ajouter la colonne créée à notre cdataframa
     dataframe -> number_col++;   // incrémenter le nombre de colonnes par 1
 }
@@ -308,7 +308,7 @@ void set_value(CDATAFRAME* dataframe, int row, int col, int val) {
         printf("ERREUR 4 (voir index des erreurs sur GitHub)\n");
         return;
     }
-    if (row < 0 || row >= dataframe -> number_row || col < 0 || col >= dataframe -> number_col) {   // vérifier que la ligne et la colonne fournis sont valides
+    if (row < 0 || row >= dataframe -> number_row || col < 0 || col >= dataframe -> number_col) {   // vérifier que la ligne et la colonne fournies sont valides
         printf("ERREUR 3 (voir index des erreurs sur GitHub)\n");
         return;
     }
@@ -329,7 +329,7 @@ void print_column_names(CDATAFRAME* dataframe) {
     }
     printf("Les titres des colonnes de notre CDataframe sont : \n");
     for (int i = 0; i < dataframe -> number_col; i++) printf("%s\t", dataframe -> columns[i] -> Title);   // parcourir les colonnes du cdataframe et afficher les titres
-    printf("\n");   // sauter une ligne
+    printf("\n");
 }
 
 
@@ -419,6 +419,7 @@ int count_cells_inf(CDATAFRAME* dataframe, int val) {
 
 
 
+/**==========FONCTION DE TEST DU CDATAFRAME==========*/
 int test_cdataframe() {
     // Créer notre CDataframe
     CDATAFRAME* dataframe = create_dataframe();

@@ -165,7 +165,7 @@ void print_partial_rows2(DATAFRAME2 *dataframe, int start, int end) {
         printf("ERREUR 3 (voir index des erreurs sur GitHub)\n");
         return;
     }
-    printf("CDataframe des lignes %llu à %llu) :\n", start, end);
+    printf("CDataframe des lignes %d a %d) :\n", start, end);
     printf("-------------------------------------------------------\n");
     for (unsigned int i = 0; i < dataframe -> num_columns; ++i) printf("%-15s", dataframe -> columns[i] -> title);   // parcourir les colonnes et afficher leur titre
     printf("\n");   // retourner à la ligne
@@ -198,7 +198,7 @@ void print_partial_columns2(DATAFRAME2 *dataframe, int start, int end) {
         printf("ERREUR 3 (voir index des erreurs sur GitHub)\n");
         return;
     }
-    printf("CDataframe des colonnes %u à %u) :\n", start, end);
+    printf("CDataframe des colonnes %u a %u) :\n", start, end);
     printf("-------------------------------------------------------\n");
     for (int i = start; i <= end; ++i) printf("%-15s", dataframe->columns[i]->title);   // parcourir les colonnes et afficher leur titre
     printf("\n");   // retourner à la ligne
@@ -412,69 +412,87 @@ void print_num_columns2(DATAFRAME2 *dataframe) {
 
 
 
+/**==========FONCTION DE TEST DU CDATAFRAME AVANCE==========*/
 int test_advanced_cdataframe() {
-    printf("Testons nos fonctions du cdataframe avance avec un cdataframe contenant des donnees sur des joueurs de tennis actuel !\n\n");
-
     // Créer un CDataframe vide
     DATAFRAME2 *dataframe = create_dataframe2();   // créer un cdataframe vide
     if (dataframe == NULL) {   // vérifier si l'allocation mémoire a marché
         printf("ERREUR 1 (voir index des erreurs sur GitHub)\n");
         return 1;
     }
+    else printf("Test de la creation de notre CDataframe reussi !\n");
+    printf("\n");
 
     // Remplir le CDataframe en dur
     fill_dataframe_hardcoded(dataframe);
+    printf("Test du remplissage en dur de notre CDataframe reussi !\n");
+    printf("\n");
 
-    // Afficher le contenu du CDataframe
-    printf("CDataframe initial (apres avoir ete rempli en dur) :\n");
+    // Afficher le contenu complet du CDataframe
+    printf("Test de l'affichage complet de notre CDataframe :\n");
     print_dataframe2(dataframe);
+    printf("\n");
 
     // Test de l'ajout d'une ligne de valeurs
-    printf("\nAjout d'une ligne de valeurs au CDataframe :\n");
+    printf("Test de l'ajout d'une ligne de valeurs au CDataframe :\n");
     void *values[] = {&(int){4}, &(float){0.77}, "Medvedev"};
     add_row2(dataframe, values);
     print_dataframe2(dataframe);
+    printf("\n");
 
     // Test de la suppression d'une ligne de valeurs
-    printf("\nSuppression de la seconde ligne du CDataframe :\n");
+    printf("Test de suppression d'une ligne du CDataframe (ici la seconde) :\n");
     delete_row(dataframe, 1); // Suppression de la deuxième ligne (index 1)
     print_dataframe2(dataframe);
+    printf("\n");
 
     // Test de l'ajout d'une colonne
-    printf("\nAjout d'une colonne de valeurs au CDataframe :\n");
+    printf("Test de l'ajout d'une colonne de valeurs au CDataframe :\n");
     add_column2(dataframe, CHAR, "Initiale");
     insert_value2(dataframe -> columns[3], "N");   // ajouter une valeur à la colonne
     insert_value2(dataframe -> columns[3], "C");   // ajouter une valeur à la colonne
     insert_value2(dataframe -> columns[3], "D");   // ajouter une valeur à la colonne
     print_dataframe2(dataframe);
+    printf("\n");
 
     // Test de la suppression d'une colonne
-    printf("\nSuppression de la colonne 'Victoires' du CDataframe :\n");
+    printf("Test de suppression d'une colonne du CDataframe (ici la seconde) :\n");
     delete_column3(dataframe, 1); // Suppression de la deuxième colonne (index 1)
     print_dataframe2(dataframe);
+    printf("\n");
 
     // Test du renommage d'une colonne
-    printf("\nRenommer la colonne 'Classement' en 'Numero' du CDataframe :\n");
+    printf("Test de renommage d'une colonne du CDataframe (ici 'Classement' -> 'Numero') :\n");
     rename_column2(dataframe, 0, "Numero");
     print_dataframe2(dataframe);
+    printf("\n");
 
     // Tester la recherche d'une valeur dans le CDataframe
-    printf("\nRecherche de 4 dans le CDataframe :\n");
+    printf("Test de la recherche d'une valeur dans le CDataframe (ici 4) :\n");
     int four = 4;
     int* ptr = &four;
     int column_index = search_value2(dataframe, ptr);
-    if (column_index != -1) printf("4 a ete trouve dans la colonne %d.\n", column_index);
-    else printf("4 n'a pas été trouvée dans le CDataframe.\n");
+    if (column_index != -1) printf("Youpi, 4 a ete trouve dans la colonne %d\n", column_index);
+    else printf("Zut, 4 n'a pas été trouvée dans le CDataframe\n");
+    printf("\n");
 
     // Test de l'affichage des noms des colonnes
-    printf("\nNoms des colonnes du CDataframe :\n");
+    printf("Test de l'affichage des noms des colonnes du CDataframe :\n");
     print_column_names2(dataframe);
+    printf("\n");
 
+    // Test de l'affichage partiel des lignes
+    printf("Test de l'affichage partiel des lignes du CDataframe :\n");
+    print_partial_rows2(dataframe, 0, 1);
+    printf("\n");
 
+    // Test de l'affichage partiel des colonnes
+    printf("Test de l'affichage partiel des colonnes du CDataframe :\n");
+    print_partial_columns2(dataframe, 0, 1);
+    printf("\n");
 
-
-    // Test des fonctions d'analyse et de statistiques
-    printf("\nAnalyse et statistiques :\n");
+    // Test des statistiques
+    printf("Test des fonctionnalites statistiques :\n");
     print_num_rows2(dataframe);
     print_num_columns2(dataframe);
 

@@ -13,8 +13,54 @@
 
 
 /**==========FONCTION MAIN==========*/
-int main()
-{
+int classic_run() {
+    int n, n1, n2;
+    printf("Choisir d'utiliser le CDataframe d'entiers (1) ou de tout types de donnees (2) :");
+    scanf("%d", &n);
+    if (n == 1) {
+        mode1();
+        while (1) {
+            do {
+                printf("Tapez le numero de ce que vous voulez faire (de 01 a 25) :");
+                scanf("%d", &n1);
+            } while (n1 < 1 || n1 > 25);
+            switch (n1) {
+                case 01:
+                    classic_run();
+                    printf("\n==============================================================================================\n");
+                    break;
+                case 02:
+                    test_column();
+                    printf("\n==============================================================================================\n");
+                    break;
+            }
+        }
+        printf("\n==============================================================================================\n");
+    }
+    if (n == 2) {
+        mode2();
+        while (1) {
+            do {
+                printf("Tapez le numero de ce que vous voulez faire (de 01 a 20) :");
+                scanf("%d", &n2);
+            } while (n2 < 1 || n2 > 20);
+            switch (n2) {
+                case 01:
+                    classic_run();
+                    printf("\n==============================================================================================\n");
+                    break;
+                case 02:
+                    test_column();
+                    printf("\n==============================================================================================\n");
+                    break;
+            }
+        }
+        printf("\n==============================================================================================\n");
+    }
+}
+
+
+int main() {
     menu();
     int num;
     while (1) {
@@ -23,6 +69,10 @@ int main()
             scanf("%d", &num);
         } while (num < 1 || num > 7);
         switch (num) {
+            case 1:
+                classic_run();
+                printf("\n==============================================================================================\n");
+                break;
             case 2:
                 test_column();
                 printf("\n==============================================================================================\n");
@@ -48,15 +98,5 @@ int main()
                 exit(EXIT_SUCCESS);
         }
     }
-
-
-    // test_column();
-
-    // test_cdataframe();
-
-    // test_advanced_column();
-
-    // test_advanced_cdataframe();
-
     return 0;
 }

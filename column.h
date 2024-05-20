@@ -23,9 +23,9 @@ typedef struct {   // structure de nos colonnes
     char* Title;   // chaîne de caractères du nom de notre colonne
 
     // variables pour les fonctionnalités avancées
-    unsigned long long *index;   // tableau d'index associé à notre colonne
+    long *index;   // tableau d'index associé à notre colonne
     int valid_index;   // attribut de tri (0 si la colonne n’est pas du tout triée, -1 si la colonne est partiellement triée, 1 si la colonne triée)
-    unsigned int index_size;   // taille de l'index
+    int index_size;   // taille de l'index
     int sort_dir;   // attribut de sens de tri effectuée (0: ASC, 1: DESC)
 } COLUMN;   // alias COLUMN attribué à notre structure
 
@@ -46,8 +46,11 @@ int number_of_equal_values(COLUMN* col, int x);   // prototype de la fonction pe
 void sort(COLUMN* col, int sort_dir);   // prototype de la fonction permettant de trier une colonne
 void print_col_by_index(COLUMN* col);   // prototype de la fonction permettant d'afficher le contenu d’une colonne triée
 void erase_index(COLUMN *col);   // prototype de la fonction permettant d'effacer l’index d’une colonne
+void insertion(int Tab[], int n, long* index);   // prototype de la fonction permettant d'insérer une valeur dans une colonne
 int check_index(COLUMN *col);   // prototype de la fonction permettant de vérifier si une colonne dispose d’un index
 void update_index(COLUMN *col);   // prototype de la fonction permettant de mettre à jour un index
 int search_value_in_column(COLUMN *col, void *val);   // prototype de la fonction permettant de recherche une valeur donnée en paramètre dans une colonne triée
 
+
+/**==========PROTOTYPE DE LA FONCTION DE TEST==========*/
 int test_column();   // prototype de la fonction de test

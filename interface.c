@@ -49,27 +49,55 @@ void menu() {
 }
 
 void credits() {
-    printf("Ce programme a ete programme par Tess POIRAT & Adrien RIVET, \navec la precieuse aide de nos professeurs Mr. KLAI et Mr. KMIMECH\nOn vous invite a aller voir le depot GitHub de notre projet pour plus d'informations : \nhttps://github.com/Adri1-rvt/EfreiDataMaster\nOn espere que notre projet vous plait !\nPS : Hala Madrid !\n");
+    printf("Ce programme a ete programme par Tess POIRAT & Adrien RIVET, "
+           "\navec la precieuse aide de nos professeurs Mr. KLAI et Mr. KMIMECH"
+           "\nOn vous invite a aller voir le depot GitHub de notre projet pour plus d'informations : "
+           "\nhttps://github.com/Adri1-rvt/EfreiDataMaster"
+           "\nOn espere que notre projet vous plait !"
+           "\nPS : Hala Madrid !\n");
 }
 
 
-/**
-// afficher le catalogue des fonctionnalités
-printf("=====================================================================================================================\n"
-"OPERATIONS DANS LE CDATAFRAME:\n\n"
-"    ALIMENTATION :                                            AFFICHAGE :\n"
-"    [01] Creer                                                [04] Afficher\n"
-"    [02] Remplir par saisies                                  [05] Afficher une partie des lig selon une limite\n"
-"    [03] Remplir en dur                                       [06] Afficher une partie des col selon une limite\n\n"
-"    OPERATIONS USUELLES :                                     ANALYSE ET STATISTIQUES :\n"
-"    [07] Ajouter une lig de val                               [15] Afficher le nb de lig\n"
-"    [08] Supprimer une lig de val                             [16] Afficher le nb de col\n"
-"    [09] Ajouter une col                                      [17] Nb de cellules contenant une val = x\n"
-"    [10] Supprimer une col                                    [18] Nb de cellules contenant une val > x\n"
-"    [11] Renommer le titre d une col                          [19] Nb de cellules contenant une val < x\n"
-"    [12] Verifier l existence d une val\n"
-"    [13] Acceder/remplacer la val se trouvant "
-"\n         dans une cellule en utilisant ses coord\n"
-"    [14] Afficher les noms des col\n\n"
-"=====================================================================================================================\n\n\n");
-*/
+void mode1() {
+    // afficher le catalogue des fonctionnalités
+    printf("===============================================================\n"
+           "OPERATIONS DANS LE CDATAFRAME D'ENTIERS:\n\n"
+           "    ALIMENTATION :                                            AFFICHAGE :\n"
+           "    [01] Creer                                                [04] Afficher\n"
+           "    [02] Remplir par saisies                                  [05] Afficher une partie des lig selon une limite\n"
+           "    [03] Remplir en dur                                       [06] Afficher une partie des col selon une limite\n\n"
+           "    OPERATIONS USUELLES :                                     ANALYSE ET STATISTIQUES :\n"
+           "    [07] Ajouter une lig de val                               [15] Afficher le nb de lig\n"
+           "    [08] Supprimer une lig de val                             [16] Afficher le nb de col\n"
+           "    [09] Ajouter une col                                      [17] Nb de cellules contenant une val = x\n"
+           "    [10] Supprimer une col                                    [18] Nb de cellules contenant une val > x\n"
+           "    [11] Renommer le titre d une col                          [19] Nb de cellules contenant une val < x\n"
+           "    [12] Verifier l existence d une val\n"
+           "    [13] Acceder/remplacer la val se trouvant                 FONCTIONNALITES AVANCEES :"
+           "\n         dans une cellule en utilisant ses coord              [20] Trier une colonne\n"
+           "    [14] Afficher les noms des col                            [21] Afficher une colonne triee\n"
+           "                                                              [22] Effacer l index d’une colonne\n"
+           "    AUTRE :                                                   [23] Verifier si une colonne dispose d’un index\n"
+           "    [26] Quitter le programme                                 [24] Mettre a jour un index\n"
+           "    [27] Sortir du mode classic                               [25] Recherche dichotomique\n\n"
+           "===============================================================\n\n");
+}
+
+void mode2() {
+    // afficher le catalogue des fonctionnalités
+    printf("===============================================================\n"
+           "OPERATIONS DANS LE CDATAFRAME DE TOUS TYPES DE DONNEES:\n\n"
+           "    ALIMENTATION :                                            AFFICHAGE :\n"
+           "    [01] Creer                                                [04] Afficher\n"
+           "    [02] Remplir par saisies                                  [05] Afficher une partie des lig selon une limite\n"
+           "    [03] Remplir en dur                                       [06] Afficher une partie des col selon une limite\n\n"
+           "    OPERATIONS USUELLES :                                     ANALYSE ET STATISTIQUES :\n"
+           "    [07] Ajouter une lig de val                               [15] Afficher le nb de lig\n"
+           "    [08] Supprimer une lig de val                             [16] Afficher le nb de col\n"
+           "    [09] Ajouter une col                                      [17] Nb de cellules contenant une val = x\n"
+           "    [10] Supprimer une col                                    [18] Nb de cellules contenant une val > x\n"
+           "    [11] Renommer le titre d une col                          [19] Nb de cellules contenant une val < x\n"
+           "    [12] Verifier l existence d une val\n"
+           "    [14] Afficher les noms des col                            [20] Sortir du mode classic \n\n"
+           "===============================================================\n\n\n");
+}
