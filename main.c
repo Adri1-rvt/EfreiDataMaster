@@ -22,11 +22,11 @@
 void classic_run() {
     int n;
     int running = 1;
-    printf("Voici notre programme CDataframe d'entiers :");
+    printf("Voici notre programme CDataframe d'entiers :\n");
     mode1();
     CDATAFRAME* dataframe = NULL;
     while (running) {
-        printf("Tapez le numero de ce que vous voulez faire (de 1 a 25) :");
+        printf("Tapez le numero de ce que vous voulez faire (de 1 a 19) :");
         scanf("%d", &n);
         switch (n) {
             case 1:
@@ -111,8 +111,8 @@ void classic_run() {
                     printf("Valeur a rechercher : ");
                     int nb;
                     scanf("%d", &nb);
-                    if (search_value(dataframe, nb)) printf("Youpi, la valeur %d est bien dans le CDataframe !\n", 4);
-                    else printf("Oh zut, la valeur %d n'est pas dans le CDataframe.\n", 4);
+                    if (search_value(dataframe, nb)) printf("Youpi, la valeur %d est bien dans le CDataframe !\n", nb);
+                    else printf("Oh zut, la valeur %d n'est pas dans le CDataframe.\n", nb);
                     break;
                 }
                 case 13: {
@@ -166,15 +166,6 @@ void classic_run() {
                     printf("Nombre de cellules contenant une valeur inferieure a %d : %d\n", nb, count_cells_inf(dataframe, nb));
                     break;
                 }
-                case 26:
-                    printf("Quitter le programme\n");
-                    printf("Merci et a bientot !");
-                    running = 0;
-                    break;
-                case 27:
-                    printf("Sortir du mode classic\n");
-                    running = 0;
-                    break;
                 default:
                     printf("Option non valide\n");
         }
@@ -186,41 +177,41 @@ void classic_run() {
 
 /**==========FONCTION MAIN==========*/
 int main() {
-    menu();
+    menu();   // afficher le menu
     int num;
-    while (1) {
+    while (1) {   // boucler à l'infini
         do {
             printf("Tapez le numero de ce que vous voulez faire :");
             scanf("%d", &num);
-        } while (num < 1 || num > 7);
+        } while (num < 1 || num > 7);   // vérifie que le numéro est valide
         switch (num) {
             case 1:
-                classic_run();
+                classic_run();   // lancer le programmee de manière classique
                 printf("\n==============================================================================================\n");
                 break;
             case 2:
-                test_column();
+                test_column();   // tester les colonnes
                 printf("\n==============================================================================================\n");
                 break;
             case 3:
-                test_advanced_column();
+                test_advanced_column();   // tester les colonnes avancées
                 printf("\n==============================================================================================\n");
                 break;
             case 4:
-                test_cdataframe();
+                test_cdataframe();   // tester le cdataframe
                 printf("\n==============================================================================================\n");
                 break;
             case 5:
-                test_advanced_cdataframe();
+                test_advanced_cdataframe();   // tester le cdataframe avancé
                 printf("\n==============================================================================================\n");
                 break;
             case 6:
-                credits();
+                credits();   // afficher les crédits
                 printf("\n==============================================================================================\n");
                 break;
             case 7:
                 printf("Merci et a bientot ! \nHala Madrid !");
-                exit(EXIT_SUCCESS);
+                exit(EXIT_SUCCESS);   // quitter le programme
         }
     }
     return 0;

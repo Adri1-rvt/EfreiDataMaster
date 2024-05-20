@@ -43,13 +43,8 @@ int number_of_equal_values(COLUMN* col, int x);   // prototype de la fonction pe
 
 
 /**==========PROTOTYPES DES FONCTIONS AVANCEES==========*/
-void sort(COLUMN* col, int sort_dir);   // prototype de la fonction permettant de trier une colonne
-void print_col_by_index(COLUMN* col);   // prototype de la fonction permettant d'afficher le contenu d’une colonne triée
-void erase_index(COLUMN *col);   // prototype de la fonction permettant d'effacer l’index d’une colonne
-void insertion(int Tab[], int n, long* index);   // prototype de la fonction permettant d'insérer une valeur dans une colonne
-int check_index(COLUMN *col);   // prototype de la fonction permettant de vérifier si une colonne dispose d’un index
-void update_index(COLUMN *col);   // prototype de la fonction permettant de mettre à jour un index
-int search_value_in_column(COLUMN *col, void *val);   // prototype de la fonction permettant de recherche une valeur donnée en paramètre dans une colonne triée
+void sort_column(COLUMN *col, int order);   // prototype de la fonction permettant trier une colonne
+int binary_search(COLUMN *col, int value);   // prototype de la fonction permettant dee faire une recherche dichotomique
 
 
 /**==========PROTOTYPE DE LA FONCTION DE TEST==========*/

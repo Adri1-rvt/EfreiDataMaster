@@ -72,9 +72,6 @@ Notre projet possède les fonctionnalités suivantes :
     4. Analyse et statistiques
         - Afficher le nombre de lignes
         - Afficher le nombre de colonnes
-        - Nombre de cellules égales à x (x donné en paramètre)
-        - Nombre de cellules contenant une valeur supérieure à x (x donné en paramètre)
-        - Nombre de cellules contenant une valeur inférieure à x (x donné en paramètre)
 
 Les différents composants du projet sont :
 - Des fichiers .c
@@ -150,6 +147,8 @@ Notre code renvoi une erreur dans la console quand vous l'exécutez ? Pas de pan
 - ERREUR 5 : Limite de lignes du Cdataframe atteinte, impossible d'ajouter une nouvelle ligne.
 - ERREUR 6 : Limite de colonnes du Cdataframe atteinte, impossible d'ajouter une nouvelle colonne.
 - ERREUR 7 : Type de colonne non pris en charge
+- ERREUR 8 : La colonne n'est pas triée, recherche dichotomique impossible
+
 
 ## Crédits
 

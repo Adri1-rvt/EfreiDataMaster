@@ -92,12 +92,8 @@ void mode1() {
            "    [10] Supprimer une col                                    [18] Nb de cellules contenant une val > x\n"
            "    [11] Renommer le titre d une col                          [19] Nb de cellules contenant une val < x\n"
            "    [12] Verifier l existence d une val\n"
-           "    [13] Acceder/remplacer la val se trouvant                 FONCTIONNALITES AVANCEES :"
-           "\n         dans une cellule en utilisant ses coord              [20] Trier une colonne\n"
-           "    [14] Afficher les noms des col                            [21] Afficher une colonne triee\n"
-           "                                                              [22] Effacer l index d’une colonne\n"
-           "    AUTRE :                                                   [23] Verifier si une colonne dispose d’un index\n"
-           "    [26] Quitter le programme                                 [24] Mettre a jour un index\n"
-           "    [27] Sortir du mode classic                               [25] Recherche dichotomique\n\n"
+           "    [13] Acceder/remplacer la val se trouvant"
+           "\n         dans une cellule en utilisant ses coord\n"
+           "    [14] Afficher les noms des col\n"
            "===============================================================\n\n");
 }
